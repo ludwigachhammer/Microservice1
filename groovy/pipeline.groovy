@@ -15,7 +15,11 @@ node {
     }
  
 
-    dir("${Source_Folder}") {
+    dir("") {
+        
+        stage("Build"){
+            sh "./gradlew build"
+        }
 
         stage('Deploy') {
             def branch = ['master']
