@@ -51,9 +51,9 @@ node {
 
                              ]]) {
 
-                sh 'cf login -a URL -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
+                sh 'cf login -a run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
 
-                sh 'cf push motor-journey'
+                sh 'cf push ms1'
 
             }
 
