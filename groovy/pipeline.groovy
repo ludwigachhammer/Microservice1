@@ -18,7 +18,7 @@ node {
     dir("") {
         
         stage("Build"){
-            sh "./gradlew build"
+            sh "gradlew build"
         }
 
         stage('Deploy') {
