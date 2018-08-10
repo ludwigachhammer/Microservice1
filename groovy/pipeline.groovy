@@ -1,6 +1,5 @@
 node {
     
-    import groovyx.net.http.*
     import groovyx.net.http.ContentType.*
     import groovyx.net.http.Method.*
 
