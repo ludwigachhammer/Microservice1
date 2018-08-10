@@ -1,3 +1,5 @@
+import groovyx.net.http.ContentType
+
 node {
 
     deleteDir()
@@ -44,10 +46,8 @@ node {
         
         stage("Push Docu"){
             
-            import groovyx.net.http.ContentType
-            
             http.request(POST) {
-                uri.path = 'http://example.com/handler.php'
+                uri.path = '192.168.99.100:9123'
                 body = [name: name, domain: 'XXX', applicationresposible: 'XXX']
                 requestContentType = ContentType.JSON
 
