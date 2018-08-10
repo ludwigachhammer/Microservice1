@@ -1,3 +1,5 @@
+import jxl.*
+
 node {
     
     import groovyx.net.http.ContentType.*
