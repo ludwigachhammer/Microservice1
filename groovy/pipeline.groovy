@@ -43,22 +43,6 @@ node {
         }
         
         stage("Push Documentation"){
-        
-            def c = new HttpClient()
-            def post = new PostMethod("http://........")
-            post.setRequestEntity(new StringRequestEntity("{name: hallo, domain: test}","application/json","utf-8"))
-            int status = c.executeMethod(post)
-            if(status == HttpStatus.SC_OK){
-                def result = post.getResponseBodyAsString();
-                log.info "==================================payload========================================"
-                log.info result
-                log.info "=================================payload end====================================="
-                def message = validate(result)
-                if (!"".equals(message))
-                fail(message)
-            }else{
-                fail("Cannot executed post of query repdoc termsheet "+" | status Code: "+status);
-            }
             
         }//stage
         
