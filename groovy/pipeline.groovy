@@ -1,7 +1,3 @@
-//import groovyx.net.http.HTTPBuilder
-import groovyx.net.http.Method.*
-import groovyx.net.http.ContentType.*
-    
 node {
 
     deleteDir()
@@ -48,20 +44,22 @@ node {
         
         stage("Push Documentation"){
         
-            def http = new HTTPBuilder('192.168.99.100:9123')
+            def c = new HttpClient()
+            def post = new PostMethod("http://........")
+            post.setRequestEntity(new StringRequestEntity("{name: hallo, domain: test}","application/json","utf-8"))
+            int status = c.executeMethod(post)
+            if(status == HttpStatus.SC_OK){
+                def result = post.getResponseBodyAsString();
+                log.info "==================================payload========================================"
+                log.info result
+                log.info "=================================payload end====================================="
+                def message = validate(result)
+                if (!"".equals(message))
+                fail(message)
+            }else{
+                fail("Cannot executed post of query repdoc termsheet "+" | status Code: "+status);
+            }
             
-            http.request(POST) {
-                uri.path = '/'
-                body = [name: name, domain: 'XXX', applicationresposible: 'XXX']
-                requestContentType = ContentType.JSON
-
-                response.success = { resp ->
-                    println "Success! ${resp.status}"
-                }
-                response.failure = { resp ->
-                    println "Request failed with status ${resp.status}"
-                }
-            }//post
         }//stage
         
     }
