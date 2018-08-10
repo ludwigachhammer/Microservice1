@@ -8,7 +8,7 @@ node {
                 branches         : [[name: "refs/heads/master"]],
                 extensions       : [[$class: 'CleanBeforeCheckout', localBranch: "master"]],
                 userRemoteConfigs: [[
-                                            credentialsId: '2119a63f-6ae3-4d37-b498-5e2e1422c378',
+                                            credentialsId: 'cbf178fa-56ee-4394-b782-36eb8932ac64',
                                             url          : "https://github.com/Nicocovi/MS-Repo"
                                     ]]
                 ])
