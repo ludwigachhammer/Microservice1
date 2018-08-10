@@ -43,11 +43,13 @@ node {
                 sh 'cf push sping-ms1 -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
-        /*
+        
         stage("Push Documentation"){
+        
+            def http = new HTTPBuilder('192.168.99.100:9123')
             
             http.request(POST) {
-                uri.path = '192.168.99.100:9123'
+                uri.path = '/'
                 body = [name: name, domain: 'XXX', applicationresposible: 'XXX']
                 requestContentType = ContentType.JSON
 
@@ -57,9 +59,9 @@ node {
                 response.failure = { resp ->
                     println "Request failed with status ${resp.status}"
                 }
-            }
-        }
-        */
+            }//post
+        }//stage
+        
     }
 
 }
