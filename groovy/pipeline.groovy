@@ -43,7 +43,7 @@ node {
                 sh 'cf push sping-ms1 -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
-        
+        /*
         stage("Push Documentation"){
             
             http.request(POST) {
@@ -59,6 +59,7 @@ node {
                 }
             }
         }
+        */
     }
 
 }
