@@ -1,9 +1,7 @@
-import jxl.*
-
-node {
+import groovyx.net.http.ContentType.*
+import groovyx.net.http.Method.*
     
-    import groovyx.net.http.ContentType.*
-    import groovyx.net.http.Method.*
+node {
 
     deleteDir()
 
