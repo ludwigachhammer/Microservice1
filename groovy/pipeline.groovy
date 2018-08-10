@@ -41,6 +41,24 @@ node {
                 sh 'cf push sping-ms1 -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
+        
+        stage("Push Docu"){
+            
+            import groovyx.net.http.ContentType
+            
+            http.request(POST) {
+                uri.path = 'http://example.com/handler.php'
+                body = [name: name, domain: 'XXX', applicationresposible: 'XXX']
+                requestContentType = ContentType.JSON
+
+                response.success = { resp ->
+                    println "Success! ${resp.status}"
+                }
+                response.failure = { resp ->
+                    println "Request failed with status ${resp.status}"
+                }
+            }
+        }
     }
 
 }
