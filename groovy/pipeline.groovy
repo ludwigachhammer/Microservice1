@@ -1,4 +1,6 @@
-import groovyx.net.http.*
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method.*
+import groovyx.net.http.ContentType.*
     
 node {
 
