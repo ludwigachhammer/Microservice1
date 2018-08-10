@@ -46,7 +46,7 @@ node {
             }
         }
         
-        stage("Push Docu"){
+        stage("Push Documentation"){
             
             http.request(POST) {
                 uri.path = '192.168.99.100:9123'
