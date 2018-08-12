@@ -1,3 +1,17 @@
+def callPost(String urlString, String queryString) {
+    def url = new URL(urlString)
+    def connection = url.openConnection()
+    connection.setRequestMethod("POST")
+    connection.doOutput = true
+
+    def writer = new OutputStreamWriter(connection.outputStream)
+    writer.write(getQueryParams())
+    writer.flush()
+    writer.close()
+    connection.connect()
+
+    new groovy.json.JsonSlurper().parseText(connection.content.text)
+}
 node {
 
     deleteDir()
@@ -43,20 +57,6 @@ node {
         }
         
         stage("Push Documentation"){
-            def callPost(String urlString, String queryString) {
-                def url = new URL(urlString)
-                def connection = url.openConnection()
-                connection.setRequestMethod("POST")
-                connection.doOutput = true
-
-                def writer = new OutputStreamWriter(connection.outputStream)
-                writer.write(getQueryParams())
-                writer.flush()
-                writer.close()
-                connection.connect()
-
-                new groovy.json.JsonSlurper().parseText(connection.content.text)
-            }
             println callPost("192.168.99.100:9123/", "a=1&b=2&c=3")
         }//stage
         
