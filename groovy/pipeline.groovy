@@ -5,7 +5,7 @@ def callPost(String urlString, String queryString) {
     connection.doOutput = true
 
     def writer = new OutputStreamWriter(connection.outputStream)
-    writer.write(getQueryParams())
+    writer.write(queryString)
     writer.flush()
     writer.close()
     connection.connect()
