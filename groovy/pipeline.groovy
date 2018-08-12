@@ -38,7 +38,7 @@ node {
                              ]]) {
                 sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
                 sh 'cf target -o ga72hib-org -s masterarbeit'
-                sh 'cf push sping-ms1 -f '+manifest+' --hostname '+name+' -p '+path
+                sh 'cf push sping-microservice1 -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
         
