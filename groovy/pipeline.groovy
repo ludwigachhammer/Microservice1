@@ -23,7 +23,7 @@ node {
 
         stage('Deploy') {
             def branch = ['master']
-            def name = "SpringMS1"
+            def name = "sping-microservice1"
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
             def manifest = "manifest.yml"
             
