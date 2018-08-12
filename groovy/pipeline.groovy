@@ -6,7 +6,7 @@ def callPost(String urlString, String queryString) {
     connection.setRequestProperty("Content-Type", "application/json")
 
     def writer = new OutputStreamWriter(connection.outputStream)
-    JSONObject data = new JSONObject().put("name", "Testname")
+    def data = new JSONObject().put("name", "Testname")
     
     writer.write(data.toString())
     writer.flush()
