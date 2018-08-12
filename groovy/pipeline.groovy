@@ -3,7 +3,7 @@ def callPost(String urlString, String queryString) {
     def connection = url.openConnection()
     connection.setRequestMethod("POST")
     connection.doOutput = true
-    url.setRequestProperty("Content-Type", "application/json")
+    connection.setRequestProperty("Content-Type", "application/json")
 
     def writer = new OutputStreamWriter(connection.outputStream)
     writer.write(queryString)
