@@ -6,9 +6,10 @@ def callPost(String urlString, String queryString) {
     connection.setRequestProperty("Content-Type", "application/json")
 
     def writer = new OutputStreamWriter(connection.outputStream)
-    def data = new JSONObject().put("name", "Testname")
+    def jsonSlurper = new JsonSlurper()
+    def object = jsonSlurper.parseText('{ "name": "John Doe App" }')
     
-    writer.write(data.toString())
+    writer.write(object)
     writer.flush()
     writer.close()
     connection.connect()
