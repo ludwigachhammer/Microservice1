@@ -6,10 +6,10 @@ def callPost(String urlString, String queryString) {
     connection.setRequestProperty("Content-Type", "application/json")
 
     def writer = new OutputStreamWriter(connection.outputStream)
-    //def jsonSlurper = new JsonSlurper()
-    //def object = jsonSlurper.parseText('{ "name": "John Doe App" }')
+    def jsonSlurper = new groovy.json.JsonSlurper()
+    def object = jsonSlurper.parseText('{ "name": "John Doe App" }')
     
-    writer.write('{ "name": "John Doe App" }')
+    writer.write(object.toString())
     writer.flush()
     writer.close()
     connection.connect()
