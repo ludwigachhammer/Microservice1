@@ -57,7 +57,7 @@ node {
         }
         
         stage("Push Documentation"){
-            println callPost("192.168.99.100:9123/", "a=1&b=2&c=3")
+            println callPost("http://192.168.99.100:9123/", "a=1&b=2&c=3") //Include protocol
         }//stage
         
     }
