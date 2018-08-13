@@ -9,7 +9,7 @@ def callPost(String urlString, String queryString) {
     def writer = new OutputStreamWriter(connection.outputStream)
     //def jsonSlurper = new groovy.json.JsonSlurper()
     //def object = jsonSlurper.parseText('{ "id": "1234", "name": "John Doe App" }')
-    writer.write(queryString.getBytes("UTF-8"));
+    writer.write(queryString.toString())
     //writer.write(object.toString()) //
     writer.flush()
     writer.close()
