@@ -6,7 +6,7 @@ def callPost(String urlString, String queryString) {
     //connection.setRequestProperty("Accept-Charset", "UTF-8")
     connection.setRequestProperty("Content-Type", "application/json")
 
-    //def writer = new OutputStreamWriter(connection.outputStream)
+    def writer = new OutputStreamWriter(connection.outputStream)
     //def jsonSlurper = new groovy.json.JsonSlurper()
     //def object = jsonSlurper.parseText('{ "id": "1234", "name": "John Doe App" }')
     writer.write(queryString.getBytes("UTF-8"));
