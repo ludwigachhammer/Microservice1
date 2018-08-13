@@ -10,7 +10,7 @@ def callPost(String urlString, String queryString) {
     def jsonSlurper = new groovy.json.JsonSlurper()
     def object = jsonSlurper.parseText('{ "id": "1234", "name": "John Doe App" }')
     
-    writer.write(object.toString())
+    writer.write(object)
     writer.flush()
     writer.close()
     connection.connect()
