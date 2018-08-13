@@ -3,14 +3,14 @@ def callPost(String urlString, String queryString) {
     def connection = url.openConnection()
     connection.setRequestMethod("POST")
     connection.doOutput = true
-    connection.setRequestProperty("Accept-Charset", "UTF-8")
+    //connection.setRequestProperty("Accept-Charset", "UTF-8")
     connection.setRequestProperty("Content-Type", "application/json")
 
-    def writer = new OutputStreamWriter(connection.outputStream)
-    def jsonSlurper = new groovy.json.JsonSlurper()
-    def object = jsonSlurper.parseText('{ "id": "1234", "name": "John Doe App" }')
-    
-    writer.write(object)
+    //def writer = new OutputStreamWriter(connection.outputStream)
+    //def jsonSlurper = new groovy.json.JsonSlurper()
+    //def object = jsonSlurper.parseText('{ "id": "1234", "name": "John Doe App" }')
+    writer.write(queryString.getBytes("UTF-8"));
+    //writer.write(object.toString()) //
     writer.flush()
     writer.close()
     connection.connect()
