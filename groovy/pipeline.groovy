@@ -50,7 +50,7 @@ node {
         }
         
         stage("Push Documentation"){
-            def cmd = "curl -H 'Accept: application/json' -H 'Content-Type: application/json;charset=UTF-8' -X POST http://192.168.99.100:9123/document -d \"{\"id\": \"34564565\",\"name\": \"spring-microservice-demo\",\"type\": \"service\",\"owner\": \"Nicolas\",\"description\": \"Simple-microservice\",\"domain\": \"Finance\"}\" "
+            def cmd = "curl -H 'Accept: application/json' -H 'Content-Type: application/json;charset=UTF-8' -X POST http://192.168.99.100:9123/document -d \"{\"id\": \"25280205\",\"name\": \"demo-kick\",\"type\": \"service\",\"owner\": \"Miriam\",\"description\": \"Simple-microservice\",\"domain\": \"Finance\"}\" "
             sh cmd
         }//stage
         
