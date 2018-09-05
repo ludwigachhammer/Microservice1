@@ -47,15 +47,8 @@ node {
         }
         
         stage("Push Documentation"){
-            sh 'curl -H "Content-Type: application/json" -X POST http://localhost:9123/document -d "{
-                        "id": "123456",
-                        "name": "spring-microservice-demo",
-                        "type": "service",
-                        "owner": "Nicolas",
-                        "description": "Simple microservice",
-                        "domain": "Finance"
-                    }"
-            '//sh
+            def json = / "{"id": "123456","name": "spring-microservice-demo","type": "service","owner": "Nicolas","description": "Simple microservice","domain": "Finance"}" /
+            sh 'curl -H \"Content-Type: application/json\" -X POST http://localhost:9123/document -d '+json//sh
         }//stage
         
     }
