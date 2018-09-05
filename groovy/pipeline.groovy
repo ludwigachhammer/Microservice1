@@ -1,22 +1,3 @@
-def callPost(String urlString, String queryString) {
-    def url = new URL(urlString)
-    def connection = url.openConnection()
-    connection.setRequestMethod("POST")
-    connection.doOutput = true
-    //connection.setRequestProperty("Accept-Charset", "UTF-8")
-    connection.setRequestProperty("Content-Type", "application/json")
-
-    def writer = new OutputStreamWriter(connection.outputStream)
-    //def jsonSlurper = new groovy.json.JsonSlurper()
-    //def object = jsonSlurper.parseText('{ "id": "1234", "name": "John Doe App" }')
-    writer.write(queryString.toString())
-    //writer.write(object.toString()) //
-    writer.flush()
-    writer.close()
-    connection.connect()
-
-    new groovy.json.JsonSlurper().parseText(connection.content.text)
-}
 node {
 
     deleteDir()
@@ -42,7 +23,7 @@ node {
 
         stage('Deploy') {
             def branch = ['master']
-            def name = "sping-microservice1"
+            def name = "spring-microservice-demo"
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
             def manifest = "manifest.yml"
             
@@ -57,12 +38,24 @@ node {
                              ]]) {
                 sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
                 sh 'cf target -o ga72hib-org -s masterarbeit'
-                sh 'cf push sping-microservice1 -f '+manifest+' --hostname '+name+' -p '+path
+                sh 'cf push spring-microservice-demo -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
         
+        stage("Get Jira Information"){
+            //write get call
+        }
+        
         stage("Push Documentation"){
-            println callPost("http://192.168.99.100:9123/document", '{"name": "test", "domain": "testdomain"}') //Include protocol
+            sh 'curl -H "Content-Type: application/json" -X POST http://localhost:9123/document -d "{
+                        "id": "123456",
+                        "name": "spring-microservice-demo",
+                        "type": "service",
+                        "owner": "Nicolas",
+                        "description": "Simple microservice",
+                        "domain": "Finance"
+                    }"
+            '//sh
         }//stage
         
     }
