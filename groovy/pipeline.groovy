@@ -1,9 +1,9 @@
 import groovy.json.JsonOutput
 
 node {
-
+    /*
     deleteDir()
-
+    
     stage('Sources') {
         checkout([
                 $class           : 'GitSCM',
@@ -15,14 +15,14 @@ node {
                                     ]]
                 ])
     }
- 
+    */
 
     dir("") {
-        
+        /*
         stage("Build"){
             sh "gradle build"
         }
-        /*
+        
         stage('Deploy') {
             def branch = ['master']
             def name = "spring-microservice-demo"
