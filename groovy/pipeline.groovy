@@ -20,7 +20,7 @@ node {
         stage("Build"){
             sh "gradle build"
         }
-
+        /*
         stage('Deploy') {
             def branch = ['master']
             def name = "spring-microservice-demo"
@@ -41,14 +41,14 @@ node {
                 sh 'cf push spring-microservice-demo -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
+        */
         
         stage("Get Jira Information"){
             //write get call
         }
         
         stage("Push Documentation"){
-            def cmd = "curl -H \"Content-Type: application/json\" -X POST http://192.168.99.100:9123/document -d {\"id\": \"34564565\",\"name\": \"spring-microservice-demo\",\"type\": \"service\",\"owner\": \"Nicolas\",\"description\": \"Simple microservice\",\"domain\": \"Finance\"} "
-            sh cmd//sh
+            sh 'documentation.bat'//for windows
         }//stage
         
     }
