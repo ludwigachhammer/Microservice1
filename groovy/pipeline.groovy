@@ -62,7 +62,7 @@ node {
         }
         */
         stage("Push Documentation"){
-            println callPost("http://192.168.99.100:9123/document", "{\"id\": \"16486132165561\", \"name\": \"ServiceNow3\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12345\", \"type\": \"service\"}") //Include protocol
+            callPost("http://192.168.99.100:9123/document", "{\"id\": \"16486132165561\", \"name\": \"ServiceNow3\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12345\", \"type\": \"service\"}") //Include protocol
         }//stage
         
     }
