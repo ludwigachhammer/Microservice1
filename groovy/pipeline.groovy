@@ -7,10 +7,10 @@ def callPost(String urlString, String queryString) {
     connection.setRequestProperty("Content-Type", "application/json")
 
     def writer = new OutputStreamWriter(connection.outputStream)
-    def jsonSlurper = new groovy.json.JsonSlurper()
-    def object = jsonSlurper.parseText('{ "id": "1234", "name": "John Doe App" }')
-    //writer.write(queryString.toString())
-    writer.write(object.toString()) //
+    //def jsonSlurper = new groovy.json.JsonSlurper()
+    //def object = jsonSlurper.parseText('{ "id": "1234", "name": "John Doe App" }')
+    writer.write(queryString.toString())
+    //writer.write(object.toString()) //
     writer.flush()
     writer.close()
     connection.connect()
@@ -62,7 +62,7 @@ node {
         }
         */
         stage("Push Documentation"){
-            println callPost("http://192.168.99.100:9123/document", '{"name": "test", "domain": "testdomain"}') //Include protocol
+            println callPost("http://192.168.99.100:9123/document", '{"id": "cjkbvajs1234", "name": "ServiceNow", "domain": "testdomain", "owner": "Martin","description":"bla bla kjsfnkjsv noch mehr text","short_name":"serviceAZ12345",}') //Include protocol
         }//stage
         
     }
