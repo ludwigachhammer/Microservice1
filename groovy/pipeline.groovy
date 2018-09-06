@@ -35,6 +35,10 @@ node {
         stage("Build"){
             sh "gradle build"
         }
+        
+        stage("Get Jira Information"){
+            //TODO
+        }
 
         stage('Deploy') {
             def branch = ['master']
@@ -59,9 +63,9 @@ node {
         
         stage("Push Documentation"){
             try {
-                    callPost("http://192.168.99.100:9123/document", "{\"id\": \"16486132165561123\", \"name\": \"ServiceNow4\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12345\", \"type\": \"service\"}") //Include protocol
+                    callPost("http://192.168.99.100:9123/document", "{\"id\": \"0987654321\", \"name\": \"Kick-off-App\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\"}") //Include protocol
                 } catch(e) {
-                
+                    // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
         }//stage
         
