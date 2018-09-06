@@ -62,7 +62,11 @@ node {
         }
         */
         stage("Push Documentation"){
-            callPost("http://192.168.99.100:9123/document", "{\"id\": \"16486132165561123\", \"name\": \"ServiceNow4\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12345\", \"type\": \"service\"}") //Include protocol
+            try {
+                    callPost("http://192.168.99.100:9123/document", "{\"id\": \"16486132165561123\", \"name\": \"ServiceNow4\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12345\", \"type\": \"service\"}") //Include protocol
+                } catch(e) {
+                
+                }
         }//stage
         
     }
