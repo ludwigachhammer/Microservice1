@@ -1,11 +1,26 @@
-@Grab('io.github.http-builder-ng:http-builder-ng-okhttp:0.14.2')
-import static groovy.json.JsonOutput.toJson
-import static groovyx.net.http.HttpBuilder.configure
+def callPost(String urlString, String queryString) {
+    def url = new URL(urlString)
+    def connection = url.openConnection()
+    connection.setRequestMethod("POST")
+    connection.doOutput = true
+    //connection.setRequestProperty("Accept-Charset", "UTF-8")
+    connection.setRequestProperty("Content-Type", "application/json")
 
+    def writer = new OutputStreamWriter(connection.outputStream)
+    //def jsonSlurper = new groovy.json.JsonSlurper()
+    //def object = jsonSlurper.parseText('{ "id": "1234", "name": "John Doe App" }')
+    writer.write(queryString.toString())
+    //writer.write(object.toString()) //
+    writer.flush()
+    writer.close()
+    connection.connect()
+
+    new groovy.json.JsonSlurper().parseText(connection.content.text)
+}
 node {
     /*
     deleteDir()
-    
+
     stage('Sources') {
         checkout([
                 $class           : 'GitSCM',
@@ -24,10 +39,10 @@ node {
         stage("Build"){
             sh "gradle build"
         }
-        
+
         stage('Deploy') {
             def branch = ['master']
-            def name = "spring-microservice-demo"
+            def name = "sping-microservice1"
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
             def manifest = "manifest.yml"
             
@@ -42,38 +57,12 @@ node {
                              ]]) {
                 sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
                 sh 'cf target -o ga72hib-org -s masterarbeit'
-                sh 'cf push spring-microservice-demo -f '+manifest+' --hostname '+name+' -p '+path
+                sh 'cf push sping-microservice1 -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
         */
-        
-        stage("Get Jira Information"){
-            //write get call
-        }
-        
         stage("Push Documentation"){
-            /*http.request(POST) {
-                uri.path = 'http://192.168.99.100:9123'
-                body = [id: 'bob', name: 'spring-microservice-demo', type: 'service',owner: 'Nicolas',description: 'Simple microservice',domain: 'Finance']
-                requestContentType = ContentType.JSON
-
-                response.success = { resp ->
-                    println "Success! ${resp.status}"
-                }
-
-                response.failure = { resp ->
-                    println "Request failed with status ${resp.status}"
-                }
-            }*/
-            //def cmd = "curl -H \"Accept: application/json\" -H \"Content-Type: application/json;charset=UTF-8\" -X POST http://192.168.99.100:9123/document -d \"{\"id\": \"25280205\",\"name\": \"demo-kick\",\"type\": \"service\",\"owner\": \"Miriam\",\"description\": \"Simple-microservice\",\"domain\": \"Finance\"}\" "
-            //sh 'curl -H "Accept: application/json" -H "Content-Type: application/json;charset=UTF-8" -X POST http://192.168.99.100:9123/document -d "{"id": "25280205","name": "demo-kick","type": "service","owner": "Miriam","description": "Simple-microservice","domain": "Finance"}"'
-            //sh 'documentation'
-            def posts = configure {
-                request.uri = 'http://192.168.99.100:9123'
-                request.uri.path = '/document' 
-                request.contentType = 'application/json'
-                request.body = toJson(id: 'bob', name: 'spring-microservice-demo', type: 'service',owner: 'Nicolas',description: 'Simple microservice',domain: 'Finance')
-            }.post()
+            println callPost("http://192.168.99.100:9123/document", '{"name": "test", "domain": "testdomain"}') //Include protocol
         }//stage
         
     }
