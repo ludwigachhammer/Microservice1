@@ -4,7 +4,7 @@ def callPost(String urlString, String queryString) {
     connection.setRequestMethod("POST")
     connection.doInput = true
     connection.doOutput = true
-    connection.setContentType("application/json")
+    //connection.setContentType("application/json")
     //connection.setRequestProperty("Accept", "application/json")
     //connection.setHeader("Content-Type", "application/json; charset=utf-8");
     //connection.setRequestProperty("content-type", "application/json;charset=UTF-8")
