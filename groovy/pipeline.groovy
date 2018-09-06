@@ -3,8 +3,8 @@ def callPost(String urlString, String queryString) {
     def connection = url.openConnection()
     connection.setRequestMethod("POST")
     connection.doOutput = true
-    //connection.setRequestProperty("Accept-Charset", "UTF-8")
-    connection.setRequestProperty("Content-Type", "application/json")
+    //connection.setRequestProperty("Accept", "Charset=UTF-8")
+    //connection.setRequestProperty("Content-Type", "application/json")
 
     def writer = new OutputStreamWriter(connection.outputStream)
     writer.write(queryString.toString())
