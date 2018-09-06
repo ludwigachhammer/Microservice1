@@ -4,9 +4,6 @@ def callPost(String urlString, String queryString) {
     connection.setRequestMethod("POST")
     connection.doInput = true
     connection.doOutput = true
-    //connection.setContentType("application/json")
-    //connection.setRequestProperty("Accept", "application/json")
-    //connection.setHeader("Content-Type", "application/json; charset=utf-8");
     connection.setRequestProperty("content-type", "application/json;charset=UTF-8")
 
     def writer = new OutputStreamWriter(connection.outputStream)
@@ -18,7 +15,7 @@ def callPost(String urlString, String queryString) {
     new groovy.json.JsonSlurper().parseText(connection.content.text)
 }
 node {
-    /*
+    
     deleteDir()
 
     stage('Sources') {
@@ -32,10 +29,9 @@ node {
                                     ]]
                 ])
     }
-    */
 
     dir("") {
-        /*
+        
         stage("Build"){
             sh "gradle build"
         }
@@ -60,7 +56,7 @@ node {
                 sh 'cf push sping-microservice1 -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
-        */
+        
         stage("Push Documentation"){
             try {
                     callPost("http://192.168.99.100:9123/document", "{\"id\": \"16486132165561123\", \"name\": \"ServiceNow4\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12345\", \"type\": \"service\"}") //Include protocol
