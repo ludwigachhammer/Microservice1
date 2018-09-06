@@ -1,4 +1,4 @@
-import groovy.json.JsonOutput
+import groovyx.net.http.ContentType
 
 node {
     /*
@@ -50,9 +50,22 @@ node {
         }
         
         stage("Push Documentation"){
-            def cmd = "curl -H \"Accept: application/json\" -H \"Content-Type: application/json;charset=UTF-8\" -X POST http://192.168.99.100:9123/document -d \"{\"id\": \"25280205\",\"name\": \"demo-kick\",\"type\": \"service\",\"owner\": \"Miriam\",\"description\": \"Simple-microservice\",\"domain\": \"Finance\"}\" "
+            http.request(POST) {
+                uri.path = 'http://192.168.99.100:9123'
+                body = [id: 'bob', name: 'spring-microservice-demo', type: 'service',owner: 'Nicolas',description: 'Simple microservice',domain: 'Finance']
+                requestContentType = ContentType.JSON
+
+                response.success = { resp ->
+                    println "Success! ${resp.status}"
+                }
+
+                response.failure = { resp ->
+                    println "Request failed with status ${resp.status}"
+                }
+            }
+            //def cmd = "curl -H \"Accept: application/json\" -H \"Content-Type: application/json;charset=UTF-8\" -X POST http://192.168.99.100:9123/document -d \"{\"id\": \"25280205\",\"name\": \"demo-kick\",\"type\": \"service\",\"owner\": \"Miriam\",\"description\": \"Simple-microservice\",\"domain\": \"Finance\"}\" "
             //sh 'curl -H "Accept: application/json" -H "Content-Type: application/json;charset=UTF-8" -X POST http://192.168.99.100:9123/document -d "{"id": "25280205","name": "demo-kick","type": "service","owner": "Miriam","description": "Simple-microservice","domain": "Finance"}"'
-            sh cmd
+            //sh cmd
         }//stage
         
     }
