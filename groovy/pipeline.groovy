@@ -1,4 +1,6 @@
-//import groovyx.net.http.ContentType
+@Grab('io.github.http-builder-ng:http-builder-ng-okhttp:0.14.2')
+import static groovy.json.JsonOutput.toJson
+import static groovyx.net.http.HttpBuilder.configure
 
 node {
     /*
@@ -65,7 +67,13 @@ node {
             }*/
             //def cmd = "curl -H \"Accept: application/json\" -H \"Content-Type: application/json;charset=UTF-8\" -X POST http://192.168.99.100:9123/document -d \"{\"id\": \"25280205\",\"name\": \"demo-kick\",\"type\": \"service\",\"owner\": \"Miriam\",\"description\": \"Simple-microservice\",\"domain\": \"Finance\"}\" "
             //sh 'curl -H "Accept: application/json" -H "Content-Type: application/json;charset=UTF-8" -X POST http://192.168.99.100:9123/document -d "{"id": "25280205","name": "demo-kick","type": "service","owner": "Miriam","description": "Simple-microservice","domain": "Finance"}"'
-            sh 'documentation'
+            //sh 'documentation'
+            def posts = configure {
+                request.uri = 'http://192.168.99.100:9123'
+                request.uri.path = '/document' 
+                request.contentType = 'application/json'
+                request.body = toJson(id: 'bob', name: 'spring-microservice-demo', type: 'service',owner: 'Nicolas',description: 'Simple microservice',domain: 'Finance')
+            }.post()
         }//stage
         
     }
