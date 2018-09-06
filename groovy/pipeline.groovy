@@ -2,6 +2,7 @@ def callPost(String urlString, String queryString) {
     def url = new URL(urlString)
     def connection = url.openConnection()
     connection.setRequestMethod("POST")
+    connection.doInput = true
     connection.doOutput = true
     connection.setRequestProperty("Accept", "application/json")
     connection.setRequestProperty("Content-Type", "application/json")
