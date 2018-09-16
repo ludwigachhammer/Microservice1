@@ -61,8 +61,15 @@ node {
             }
         }
         
+        stage("Get Runtime Behaviour"){
+            //sh 'cf curl /v2/apps/acf2ce75-ee92-4bb6-9adb-55a596a8dcba/summary'
+        }//stage
+        
+        
         stage("Push Documentation"){
             try {
+                    def name = ${JOB_NAME}
+                    println name
                     callPost("http://192.168.99.100:9123/document", "{\"id\": \"0987654321\", \"name\": \"Kick-off-App\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\"}") //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
