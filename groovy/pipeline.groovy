@@ -14,8 +14,12 @@ def callPost(String urlString, String queryString) {
 
     new groovy.json.JsonSlurper().parseText(connection.content.text)
 }
+
+def callGet(String url) {
+    new groovy.json.JsonSlurper().parseText(url.toURL().getText())
+}
 node {
-    
+    /*
     deleteDir()
 
     stage('Sources') {
@@ -29,12 +33,15 @@ node {
                                     ]]
                 ])
     }
+    */
 
     dir("") {
         
+        /*
         stage("Build"){
             sh "gradle build"
         }
+        */
         
         stage("Get Jira Information"){
             //TODO
@@ -62,7 +69,9 @@ node {
         }
         
         stage("Get Runtime Behaviour"){
+            //def token = sh 'cf oauth-token'
             //sh 'cf curl /v2/apps/acf2ce75-ee92-4bb6-9adb-55a596a8dcba/summary'
+            //callGet()
         }//stage
         
         
