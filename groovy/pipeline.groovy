@@ -15,6 +15,10 @@ def callPost(String urlString, String queryString) {
     new groovy.json.JsonSlurper().parseText(connection.content.text)
 }
 
+def callGet(String url) {
+    new groovy.json.JsonSlurper().parseText(url.toURL().getText())
+}
+
 node {
     
     // ENVIRONMENTAL VARIABLES
@@ -71,10 +75,11 @@ node {
         
         stage("Get Runtime Behaviour"){
             //def token = sh 'cf oauth-token'
-            def info = sh 'cf app '+name
+            //def info = sh 'cf app '+name
+            //println '***********************'
+            //println info
             println '***********************'
-            println info
-            println '***********************'
+            println callGet("https://api.run.pivotal.io/v2/apps/d27ae58b-9fd8-4566-bf7a-1b8b3dc4be6b/summary")
         }//stage
         
         
