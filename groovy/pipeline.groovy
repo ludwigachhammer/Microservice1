@@ -15,9 +15,11 @@ def callPost(String urlString, String queryString) {
     new groovy.json.JsonSlurper().parseText(connection.content.text)
 }
 
-def callGet(String url) {
-    new groovy.json.JsonSlurper().parseText(url.toURL().getText())
-}
+
+// ENVIRONMENTAL VARIABLES
+def name = "sping-microservice1"
+def jobname = ${JOB_NAME}
+
 node {
     /*
     deleteDir()
@@ -49,7 +51,6 @@ node {
 
         stage('Deploy') {
             def branch = ['master']
-            def name = "sping-microservice1"
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
             def manifest = "manifest.yml"
             
@@ -77,8 +78,6 @@ node {
         
         stage("Push Documentation"){
             try {
-                    def name = ${JOB_NAME}
-                    println name
                     callPost("http://192.168.99.100:9123/document", "{\"id\": \"0987654321\", \"name\": \"Kick-off-App\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\"}") //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
