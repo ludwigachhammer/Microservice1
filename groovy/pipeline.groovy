@@ -72,7 +72,9 @@ node {
         stage("Get Runtime Behaviour"){
             //def token = sh 'cf oauth-token'
             def info = sh 'cf app '+name
+            println '***********************'
             println info
+            println '***********************'
         }//stage
         
         
