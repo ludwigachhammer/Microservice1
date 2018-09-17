@@ -79,7 +79,8 @@ node {
             //println '***********************'
             //println info
             println '***********************'
-            println callGet("https://api.run.pivotal.io/v2/apps/d27ae58b-9fd8-4566-bf7a-1b8b3dc4be6b/summary")
+            def response = callGet("https://api.run.pivotal.io/v2/apps/d27ae58b-9fd8-4566-bf7a-1b8b3dc4be6b/summary")
+            println response
         }//stage
         
         
