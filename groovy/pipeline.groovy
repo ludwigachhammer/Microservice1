@@ -19,7 +19,7 @@ node {
     
     // ENVIRONMENTAL VARIABLES
     def name = "sping-microservice1"
-    def jobname = ${JOB_NAME}
+    def jobname = $JOB_NAME
     
     /*
     deleteDir()
