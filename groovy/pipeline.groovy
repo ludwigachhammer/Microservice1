@@ -86,7 +86,7 @@ node {
         
         stage("Push Documentation"){
             try {
-                    callPost("http://192.168.99.100:9123/document", "{\"id\": \"0987654321\", \"name\": \"Kick-off-1\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"ram\": "256", \"cpu\": "40" "}") //Include protocol
+                    callPost("http://192.168.99.100:9123/document", "{\"id\": \"0987654321\", \"name\": \"Kick-off-1\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"ram\": \"256\", \"cpu\": \"40\"}") //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
