@@ -15,12 +15,12 @@ def callPost(String urlString, String queryString) {
     new groovy.json.JsonSlurper().parseText(connection.content.text)
 }
 
-
-// ENVIRONMENTAL VARIABLES
-def name = "sping-microservice1"
-def jobname = ${JOB_NAME}
-
 node {
+    
+    // ENVIRONMENTAL VARIABLES
+    def name = "sping-microservice1"
+    def jobname = ${JOB_NAME}
+    
     /*
     deleteDir()
 
