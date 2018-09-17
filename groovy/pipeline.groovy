@@ -70,8 +70,8 @@ node {
         
         stage("Get Runtime Behaviour"){
             //def token = sh 'cf oauth-token'
-            //sh 'cf curl /v2/apps/acf2ce75-ee92-4bb6-9adb-55a596a8dcba/summary'
-            //callGet()
+            def info = sh 'cf app '+name
+            println info
         }//stage
         
         
