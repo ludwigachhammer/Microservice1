@@ -92,7 +92,7 @@ node {
             println file.text
             
             LENGTH = APP_STATUS.length()
-            INDEX = APP_STATUS.indexOf("disk", 0)
+            INDEX = APP_STATUS.indexOf("#0", 0)
             APP_SHORTSTATUS = APP_STATUS.substring(INDEX,LENGTH)
             echo "SHORTSTATUS: ${APP_SHORTSTATUS}"
             echo "APP_STATUS: ${APP_STATUS}"
