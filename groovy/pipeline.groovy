@@ -93,7 +93,7 @@ node {
             
             LENGTH = APP_STATUS.length()
             INDEX = APP_STATUS.indexOf("#0", 0)
-            APP_SHORTSTATUS = (APP_STATUS.substring(INDEX,LENGTH)).replaceAll("\\s",";")
+            APP_SHORTSTATUS = (APP_STATUS.substring(INDEX,LENGTH)).replace("   ",";")
             echo "SHORTSTATUS: ${APP_SHORTSTATUS}"
             //echo "APP_STATUS: ${APP_STATUS}"
             //echo "************************"
