@@ -106,7 +106,7 @@ node {
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
             
             try {
-                    callPost("http://192.168.99.100:9123/document", "{ ${basicInfo} ${runtime} }") //Include protocol
+                    callPost("http://192.168.99.100:9123/document", "{"+basicinfo+""+runtime+"}") //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
