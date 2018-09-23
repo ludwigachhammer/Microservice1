@@ -51,6 +51,14 @@ node {
         
         stage("Get Jira Information"){
             //TODO
+            /*
+            def id = ""
+            def appName = ""
+            def owner = ""
+            def description = ""
+            def short_name = ""
+            def type = ""
+            */
         }
 
         stage('Deploy') {
@@ -74,22 +82,15 @@ node {
         }
         
         stage("Get Runtime Behaviour"){
-            //def token = sh 'cf oauth-token'
-            //def info = sh 'cf app '+name
-            //println '***********************'
-            //println info
-            //println '***********************'
-            //def response = callGet("https://api.run.pivotal.io/v2/apps/d27ae58b-9fd8-4566-bf7a-1b8b3dc4be6b/summary")
-            //println response
             APP_STATUS = sh (
                 script: 'cf app '+name,
                 returnStdout: true
             )
-            File file = new File("out.txt")
+            File file = new File(name+".txt")
             file.write APP_STATUS
- 
             println file.text
-            echo "ejbfjksbdcjsdbc: ${APP_STATUS}"
+            
+            echo "APP_STATUS: ${APP_STATUS}"
             echo "************************"
         }//stage
         
