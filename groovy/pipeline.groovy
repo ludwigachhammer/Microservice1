@@ -102,7 +102,7 @@ node {
         
         stage("Push Documentation"){
             
-            def basicinfo = "\"id\": \"0987654321\", \"name\": \"Kick-off-1\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\","
+            def basicinfo = "\"id\": \"098765135465\", \"name\": \"Kick-off-2\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\","
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
             
             try {
