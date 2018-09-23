@@ -60,7 +60,7 @@ node {
             def type = ""
             */
         }
-
+        /*
         stage('Deploy') {
             def branch = ['master']
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
@@ -80,6 +80,7 @@ node {
                 sh 'cf push sping-microservice1 -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
+        */
         
         stage("Get Runtime Behaviour"){
             APP_STATUS = sh (
@@ -90,6 +91,8 @@ node {
             file.write APP_STATUS
             println file.text
             
+            APP_SHORTSTATUS = APP_STATUS.indexOf("#0", 0)
+            echo "SHORTSTATUS: ${APP_SHORTSTATUS}"
             echo "APP_STATUS: ${APP_STATUS}"
             echo "************************"
         }//stage
