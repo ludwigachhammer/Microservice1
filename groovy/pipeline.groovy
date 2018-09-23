@@ -85,7 +85,11 @@ node {
                 script: 'cf app '+name,
                 returnStdout: true
             ).trim()
-            echo "APP_STATUS: ${APP_STATUS}"
+            File file = new File("out.txt")
+            file.write APP_STATUS
+ 
+            println file.text
+            echo "ejbfjksbdcjsdbc: ${APP_STATUS}"
         }//stage
         
         
