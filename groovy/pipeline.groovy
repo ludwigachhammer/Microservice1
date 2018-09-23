@@ -84,7 +84,7 @@ node {
             APP_STATUS = sh (
                 script: 'cf app '+name,
                 returnStdout: true
-            ).trim()
+            )
             File file = new File("out.txt")
             file.write APP_STATUS
  
