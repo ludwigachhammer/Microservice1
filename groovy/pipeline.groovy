@@ -101,8 +101,12 @@ node {
         
         
         stage("Push Documentation"){
+            
+            def basicinfo = "\"id\": \"0987654321\", \"name\": \"Kick-off-1\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\","
+            def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
+            
             try {
-                    callPost("http://192.168.99.100:9123/document", "{\"id\": \"0987654321\", \"name\": \"Kick-off-1\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"RAM\": \"256\", \"CPU\": \"40\", \"Disk\": \"141\" }") //Include protocol
+                    callPost("http://192.168.99.100:9123/document", "{ ${basicInfo} ${runtime} }") //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
