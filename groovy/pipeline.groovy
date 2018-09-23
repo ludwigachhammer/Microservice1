@@ -90,6 +90,7 @@ node {
  
             println file.text
             echo "ejbfjksbdcjsdbc: ${APP_STATUS}"
+            echo "************************"
         }//stage
         
         
