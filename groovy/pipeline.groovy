@@ -91,7 +91,9 @@ node {
             file.write APP_STATUS
             println file.text
             
-            APP_SHORTSTATUS = APP_STATUS.indexOf("disk", 0)
+            LENGTH = APP_STATUS.length()
+            INDEX = APP_STATUS.indexOf("disk", 0)
+            APP_SHORTSTATUS = APP_STATUS.substring(INDEX,LENGTH)
             echo "SHORTSTATUS: ${APP_SHORTSTATUS}"
             echo "APP_STATUS: ${APP_STATUS}"
             echo "************************"
