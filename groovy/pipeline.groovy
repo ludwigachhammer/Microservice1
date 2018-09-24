@@ -24,7 +24,7 @@ node {
     // ENVIRONMENTAL VARIABLES
     def name = "sping-microservice1"
     //def jobname = $JOB_NAME
-    
+    BUSINESS_INFO = ""
     /*
     deleteDir()
 
@@ -59,6 +59,11 @@ node {
             def short_name = ""
             def type = ""
             */
+            //def basicinfo = "\"id\": \"XXX\", \"name\": \"XXX\", \"owner\": \"XXX\", \"description\": \"XXX\", \"short_name\": \"XXX\", \"type\": \"XXX\","
+            DOMAIN = "Finance"
+            SUBDOMAIN = "Taxes"
+            BUSINESS_CAPABILITY = "tax_calculation"
+            BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "
         }
         /*
         stage('Deploy') {
@@ -87,16 +92,10 @@ node {
                 script: 'cf app '+name,
                 returnStdout: true
             )
-            File file = new File(name+".txt")
-            file.write APP_STATUS
-            println file.text
-            
             LENGTH = APP_STATUS.length()
             INDEX = APP_STATUS.indexOf("#0", 0)
             APP_SHORTSTATUS = (APP_STATUS.substring(INDEX,LENGTH-1)).replace("   ",";").split(";")
             echo "SHORTSTATUS: ${APP_SHORTSTATUS}"
-            //echo "APP_STATUS: ${APP_STATUS}"
-            //echo "************************"
         }//stage
         
         
@@ -104,7 +103,7 @@ node {
             
             def basicinfo = "\"id\": \"098765135465\", \"name\": \"Kick-off-2\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\","
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
-            def jsonstring = "{"+basicinfo+""+runtime+"}"
+            def jsonstring = "{"+basicinfo+""+runtime+""+"}"
             echo "JSONSTRING: ${jsonstring}"
             
             try {
