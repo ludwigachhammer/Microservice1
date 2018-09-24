@@ -101,7 +101,7 @@ node {
         
         stage("Push Documentation"){
             
-            def basicinfo = "\"id\": \"09876513541465\", \"name\": \"Kick-off-3\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\","
+            def basicinfo = "\"id\": \"09876513541465\", \"name\": \"Kick-off-3\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\","
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
             def jsonstring = "{"+basicinfo+""+runtime+""+"}"
             echo "JSONSTRING: ${jsonstring}"
