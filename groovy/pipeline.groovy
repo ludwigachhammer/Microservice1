@@ -99,16 +99,18 @@ node {
             
             APP_BUILDPACKS_INDEX = APP_STATUS.indexOf("buildpacks", 0)
             APP_TYPE_INDEX = APP_STATUS.indexOf("type", 0)
-            APP_BUILDPACKS = (APP_STATUS.substring(APP_BUILDPACKS_INDEX,APP_TYPE_INDEX-1)).replace("   ",";").split(";")
+            APP_BUILDPACKS = (APP_STATUS.substring(APP_BUILDPACKS_INDEX+10,APP_TYPE_INDEX-1)).replace("   ",";").split(";")
+            //+10 length of 'buildpacks'
             echo "APP_BUILDPACKS: ${APP_BUILDPACKS}"
             
         }//stage
         
         
         stage("Push Documentation"){
-            
+            //TODO generate ID, ... (basic info)
             def basicinfo = "\"id\": \"09876513541465\", \"name\": \"Kick-off-3\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\","
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
+            def buildpacks = ""
             def jsonstring = "{"+basicinfo+""+runtime+""+"}"
             echo "JSONSTRING: ${jsonstring}"
             
