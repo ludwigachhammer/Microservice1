@@ -65,7 +65,7 @@ node {
             BUSINESS_CAPABILITY = "tax_calculation"
             BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "
         }
-        /*
+        
         stage('Deploy') {
             def branch = ['master']
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
@@ -85,7 +85,7 @@ node {
                 sh 'cf push sping-microservice1 -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
-        */
+        
         
         stage("Get Runtime Behaviour"){
             APP_STATUS = sh (
