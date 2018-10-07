@@ -98,7 +98,9 @@ node {
             echo "SHORTSTATUS: ${APP_SHORTSTATUS}"
             
             APP_BUILDPACKS_INDEX = APP_STATUS.indexOf("buildpacks", 0)
-            echo "APP_BUILDPACKS_INDEX: ${APP_BUILDPACKS_INDEX}"
+            APP_TYPE_INDEX = APP_STATUS.indexOf("type", 0)
+            APP_BUILDPACKS = (APP_STATUS.substring(APP_BUILDPACKS_INDEX,APP_TYPE_INDEX-1)).replace("   ",";").split(";")
+            echo "APP_BUILDPACKS: ${APP_BUILDPACKS}"
             
         }//stage
         
