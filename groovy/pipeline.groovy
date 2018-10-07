@@ -104,13 +104,12 @@ node {
             echo "APP_BUILDPACKS: ${APP_BUILDPACKS}"
             //include buildpacks
             def iterations = APP_BUILDPACKS.size()
-            def buildpacks = ""
+            def buildpacks = "  \"service\": { \"buildpacks\":["
             for (i = 0; i <iterations; i++) {
-                buildpacks = "  \"service\": { \"buildpacks\":[\""+APP_BUILDPACKS[i]+"\","
+                buildpacks = "\""+APP_BUILDPACKS[i]+"\","
             }
-            buildpack = buildpack.substring(0, (buildpack.length())-1) //remove last coma
-            def end = "] } "
-            def buildpackstring = buildpacks+end   
+            buildpacks = buildpacks.substring(0, (buildpacks.length())-1) //remove last coma
+            def buildpackstring = buildpacks+"] } "   
             echo "buildpackstring: ${buildpackstring}"
         }//stage
         
