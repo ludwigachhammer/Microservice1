@@ -23,6 +23,7 @@ node {
     
     // ENVIRONMENTAL VARIABLES
     def name = "springboot-corpancho-1"
+    def buildpackstring = ""
     //def jobname = $JOB_NAME
     BUSINESS_INFO = ""
     /*
@@ -106,10 +107,10 @@ node {
             def iterations = APP_BUILDPACKS.size()
             def buildpacks = "  \"service\": { \"buildpacks\":["
             for (i = 0; i <iterations; i++) {
-                buildpacks = "\""+APP_BUILDPACKS[i]+"\","
+                buildpacks = buildpacks+"\""+APP_BUILDPACKS[i]+"\","
             }
             buildpacks = buildpacks.substring(0, (buildpacks.length())-1) //remove last coma
-            def buildpackstring = buildpacks+"] } "   
+            buildpackstring = buildpacks+"] } "
             echo "buildpackstring: ${buildpackstring}"
         }//stage
         
