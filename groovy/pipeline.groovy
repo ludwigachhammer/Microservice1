@@ -102,7 +102,15 @@ node {
             APP_BUILDPACKS = (APP_STATUS.substring(APP_BUILDPACKS_INDEX+11,APP_TYPE_INDEX-1)).trim().replace(" ",";").split(";") //trim for \n
             //+11 length of 'buildpacks'
             echo "APP_BUILDPACKS: ${APP_BUILDPACKS}"
-            
+            //include buildpacks
+            def iterations = APP_BUILDPACKS.size()
+            for (i = 0; i <iterations; i++) {
+                def buildpacks = "  \"service\": { \"buildpacks\":[\""+APP_BUILDPACKS[i]+"\","
+            }
+            buildpack = buildpack.substring(0, (buildpack.length())-1) //remove last coma
+            def end = "] } "
+            def buildpackstring = buildpacks+end   
+            echo "buildpackstring: ${buildpackstring}"
         }//stage
         
         
@@ -110,7 +118,7 @@ node {
             //TODO generate ID, ... (basic info)
             def basicinfo = "\"id\": \"09876513541465\", \"name\": \"Kick-off-3\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\","
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" },"
-            def buildpacks = "  \"service\": { \"buildpacks\":[\"Java\", \"Spring\"] }  "
+            
             def jsonstring = "{"+basicinfo+runtime+buildpacks+"}"
             echo "JSONSTRING: ${jsonstring}"
             
