@@ -44,11 +44,11 @@ node {
 
     dir("") {
         
-        /*
+        
         stage("Build"){
             sh "gradle build"
         }
-        */
+        
         
         stage("Get Jira Information"){
             //TODO
