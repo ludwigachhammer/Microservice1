@@ -22,7 +22,7 @@ def callGet(String url) {
 node {
     
     // ENVIRONMENTAL VARIABLES
-    def name = "springboot-corpancho-1"
+    def name = "springboot-corpancho-2"
     def buildpackstring = ""
     //def jobname = $JOB_NAME
     BUSINESS_INFO = ""
@@ -83,7 +83,7 @@ node {
                              ]]) {
                 sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
                 sh 'cf target -o ncorpan-org -s development'
-                sh 'cf push springboot-corpancho-1 -f '+manifest+' --hostname '+name+' -p '+path
+                sh 'cf push '+name+' -f '+manifest+' --hostname '+name+' -p '+path
             }
         }
         
