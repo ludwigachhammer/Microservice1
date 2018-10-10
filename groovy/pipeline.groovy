@@ -53,13 +53,15 @@ node {
             //TODO
             //Validate jira link in links.config
             def currentDir = new File(".").absolutePath
-            def workspace = "workspace"
-            def build = Thread.currentThread().toString()
-            def regexp= ".+?/job/([^/]+)/.*"
-            def match = build  =~ regexp
-            def jobName = match[0][1]
-            def file = new File(currentDir+workspace+jobName+"/links.config").text
+            //def workspace = "workspace"
+            //def build = Thread.currentThread().toString()
+            //def regexp= ".+?/job/([^/]+)/.*"
+            //def match = build  =~ regexp
+            //def jobName = match[0][1]
+            //def file = new File(currentDir+workspace+jobName+"/links.config").text
             //String jobName = System.getenv('JOB_NAME')
+            env.WORKSPACE = pwd() // present working directory.
+            def file = readFile "${env.WORKSPACE}/links.config"
             echo file
         }
         
