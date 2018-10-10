@@ -65,13 +65,16 @@ node {
                     break;
                 }
             }
-            echo trimmedText[index]
-            //echo JIRALINK
+            JIRALINK = trimmedText[index]
+            String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]" //website regex
+            //TODO 
+            //JIRALINK matches regex
         }
         
         stage("Get Jira Information"){
             //TODO
             /*
+            API Call to JIRALINK
             def id = ""
             def appName = ""
             def owner = ""
