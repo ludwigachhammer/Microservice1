@@ -53,7 +53,9 @@ node {
             
             //TODO
             //Validate jira link in links.config
-            def currentDir = new File('links.config')
+            def file = new File('links.config')
+            String textContent = file.text
+            echo textContent 
         }
         
         stage("Get Jira Information"){
