@@ -44,10 +44,11 @@ node {
 
     dir("") {
         
-        
+        /*
         stage("Build"){
             sh "gradle build"
         }
+        */
         
         stage("Validating Config"){
             //TODO
