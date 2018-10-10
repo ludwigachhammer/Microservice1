@@ -53,10 +53,10 @@ node {
             
             //TODO
             //Validate jira link in links.config
-            //String fileContents = new File('../links.config').getText('UTF-8')
-            println  "Root project:   ${project.rootProject}";
-            println  "  rootDir:      ${project.rootDir}"
-            println  "  projectDir:   ${project.projectDir}";
+            String fileContents = new File('/../links.config').getText('UTF-8')
+            //println  "Root project:   ${project.rootProject}";
+            //println  "  rootDir:      ${project.rootDir}"
+            //println  "  projectDir:   ${project.projectDir}";
         }
         
         stage("Get Jira Information"){
