@@ -50,10 +50,9 @@ node {
         }
         
         stage("Validating Config"){
-            
             //TODO
             //Validate jira link in links.config
-            def currentDir = new File("").absolutePath
+            def currentDir = new File(".").absolutePath
             echo currentDir
             def file = new File(currentDir+'links.config')
             def textContent = file.text
