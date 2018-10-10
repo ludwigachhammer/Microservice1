@@ -56,9 +56,11 @@ node {
             def currentDir = new File(".").absolutePath
             env.WORKSPACE = pwd() // present working directory.
             def file = readFile "${env.WORKSPACE}/links.config"
-            def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\r\n',' ')
+            def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\r\n',' ')..replaceAll(" ",";").split(";")
             //JIRALINK = trimmedText.indexOf("jira", 0)
+            def index = trimmedText.index("jira")
             echo trimmedText
+            echo trimmedText[index+1]
             //echo JIRALINK
         }
         
