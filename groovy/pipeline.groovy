@@ -53,7 +53,7 @@ node {
             //TODO
             //Validate jira link in links.config
             def currentDir = new File(".").absolutePath
-            def file = new File("${Jenkins.instance.getJob('JobName').workspace}/file.txt").text
+            def file = new File("${Jenkins.instance.getJob('JobName').workspace}/links.config").text
             echo currentDir
             echo text
             //def file = new File(currentDir+'links.config')
