@@ -53,7 +53,7 @@ node {
             //TODO
             //Validate jira link in links.config
             //def currentDir = new File(".").absolutePath
-            def jobName = "${Jenkins.instance.getJob('JobName').workspace}
+            def jobName = manager.build.getEnvVars()["WORKSPACE"]
             //def file = new File("${Jenkins.instance.getJob('JobName').workspace}/links.config").text
             //String jobName = System.getenv('JOB_NAME')
             echo jobName
