@@ -53,7 +53,7 @@ node {
             
             //TODO
             //Validate jira link in links.config
-            def file = new File('links.config')
+            def file = new File('C:/Program Files (x86)/Jenkins/workspace/Microservice1/groovy/links.config')
             def textContent = file.text
             echo textContent 
         }
