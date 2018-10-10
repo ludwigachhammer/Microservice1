@@ -54,7 +54,7 @@ node {
             //TODO
             //Validate jira link in links.config
             def file = new File('links.config')
-            String textContent = file.text
+            def textContent = file.getText
             echo textContent 
         }
         
