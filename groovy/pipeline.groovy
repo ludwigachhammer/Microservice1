@@ -54,7 +54,7 @@ node {
             //TODO
             //Validate jira link in links.config
             //String fileContents = new File('links.config').getText('UTF-8')
-            File f = new File(this.getClass().getResource("/links.conf").getFile());
+            File f = new File(this.getClass().getResource("links.conf").getFile());
             //println  "Root project:   ${project.rootProject}";
             //println  "  rootDir:      ${project.rootDir}"
             //println  "  projectDir:   ${project.projectDir}";
