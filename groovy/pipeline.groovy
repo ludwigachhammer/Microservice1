@@ -116,7 +116,7 @@ node {
             
             APP_BUILDPACKS_INDEX = APP_STATUS.indexOf("buildpacks", 0)
             APP_TYPE_INDEX = APP_STATUS.indexOf("type", 0)
-            APP_BUILDPACKS = (APP_STATUS.substring(APP_BUILDPACKS_INDEX+11,APP_TYPE_INDEX-1)).trim().replace(" ",";").split(";") //trim for \n
+            APP_BUILDPACKS = (APP_STATUS.substring(APP_BUILDPACKS_INDEX+11,APP_TYPE_INDEX-1)).trim().replaceAll("\\s",";").split(";") //trim for \n
             //+11 length of 'buildpacks'
             echo "APP_BUILDPACKS: ${APP_BUILDPACKS}"
             //include buildpacks
