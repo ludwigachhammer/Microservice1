@@ -59,7 +59,7 @@ node {
             def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\r\n',' ')replaceAll("\\s",";").split(";")
             //JIRALINK = trimmedText.indexOf("jira", 0)
             echo "trimmedText: ${trimmedText}"
-            def index = Arrays.asList(trimmedText).lastIndexOf("jira");
+            def index = Arrays.asList(trimmedText).lastIndexOf(" jira:");
             echo index
             echo trimmedText[index+1]
             //echo JIRALINK
