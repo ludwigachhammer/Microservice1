@@ -57,9 +57,9 @@ node {
             env.WORKSPACE = pwd() // present working directory.
             def file = readFile "${env.WORKSPACE}/links.config"
             def trimmedText = file.trim()
-            JIRALINK = trimmedText.indexOf("jira", 0)
+            //JIRALINK = trimmedText.indexOf("jira", 0)
             echo trimmedText
-            echo JIRALINK
+            //echo JIRALINK
         }
         
         stage("Get Jira Information"){
