@@ -96,14 +96,14 @@ node {
                              ]]) {
                 sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
                 sh 'cf target -o ncorpan-org -s development'
-                sh 'cf push '+name+' -f '+manifest+' --hostname '+name+' -p '+path
+                sh 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
             }
         }
         
         
         stage("Get Runtime Behaviour"){
             APP_STATUS = sh (
-                script: 'cf app '+name,
+                script: 'cf app '+NAME,
                 returnStdout: true
             )
             LENGTH = APP_STATUS.length()
@@ -123,8 +123,8 @@ node {
                 buildpacks = buildpacks+"\""+APP_BUILDPACKS[i]+"\","
             }
             buildpacks = buildpacks.substring(0, (buildpacks.length())-1) //remove last coma
-            buildpackstring = buildpacks+"] } "
-            echo "buildpackstring: ${buildpackstring}"
+            BUILDPACKSTRING = buildpacks+"] } "
+            echo "buildpackstring: ${BUILDPACKSTRING}"
         }//stage
         
         
@@ -133,7 +133,7 @@ node {
             def basicinfo = "\"id\": \"09876513541465\", \"name\": \""+name+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\","
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" },"
             
-            def jsonstring = "{"+basicinfo+runtime+buildpackstring+"}"
+            def jsonstring = "{"+basicinfo+runtime+BUILDPACKSTRING+"}"
             echo "JSONSTRING: ${jsonstring}"
             
             try {
