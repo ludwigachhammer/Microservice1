@@ -53,7 +53,9 @@ node {
             //TODO
             //Validate jira link in links.config
             def currentDir = new File(".").absolutePath
+            def workspace = manager.build.getEnvVars()["WORKSPACE"]
             echo currentDir
+            echo workspace
             def file = new File(currentDir+'links.config')
             def textContent = file.text
             echo textContent 
