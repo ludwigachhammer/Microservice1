@@ -57,11 +57,15 @@ node {
             env.WORKSPACE = pwd() // present working directory.
             def file = readFile "${env.WORKSPACE}/links.config"
             def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\r\n',' ')replaceAll("\\s",";").split(";")
-            //JIRALINK = trimmedText.indexOf("jira", 0)
             echo "trimmedText: ${trimmedText}"
-            //def index = Arrays.asList(trimmedText).lastIndexOf(" jira:");
-            //echo index
-            echo trimmedText[4]
+            int index = -1;
+            for (int i=0;i<trimmedText.length;i++) {
+                if (trimmedText[i].contains("jira")) {
+                    index = i+1;
+                    break;
+                }
+            }
+            echo trimmedText[index]
             //echo JIRALINK
         }
         
