@@ -55,15 +55,15 @@ node {
             //Validate jira link in links.config
             //String fileContents = new File('links.config').getText('UTF-8')
             //File f = new File(this.getClass().getResource("links.conf").getFile());
-            def file = new File('links.config')
+            def file = new File('groovy/links.config')
             int wordCount = 0
             file.eachLine { String line ->
                 line.tokenize().each { String word ->
-                wordCount++
-                println word
+                    wordCount++
+                    println word
+                }
             }
-}
-println "Number of words: $wordCount"
+            println "Number of words: $wordCount"
         }
         
         stage("Get Jira Information"){
