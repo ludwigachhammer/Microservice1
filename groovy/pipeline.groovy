@@ -44,17 +44,18 @@ node {
 
     dir("") {
         
-        
+        /*
         stage("Build"){
             sh "gradle build"
         }
-        
+        */
         stage("Validating Config"){
             //TODO
             //Validate jira link in links.config
             //def currentDir = new File(".").absolutePath
+            def jobName = "${Jenkins.instance.getJob('JobName').workspace}
             //def file = new File("${Jenkins.instance.getJob('JobName').workspace}/links.config").text
-            String jobName = System.getenv('JOB_NAME')
+            //String jobName = System.getenv('JOB_NAME')
             echo jobName
         }
         
