@@ -53,12 +53,12 @@ node {
             //TODO
             //Validate jira link in links.config
             def currentDir = new File(".").absolutePath
-            def workspace = manager.build.getEnvVars()["WORKSPACE"]
+            def file = new File("${Jenkins.instance.getJob('JobName').workspace}/file.txt").text
             echo currentDir
-            echo workspace
-            def file = new File(currentDir+'links.config')
-            def textContent = file.text
-            echo textContent 
+            echo text
+            //def file = new File(currentDir+'links.config')
+            //def textContent = file.text
+            //echo textContent 
         }
         
         stage("Get Jira Information"){
