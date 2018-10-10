@@ -53,7 +53,7 @@ node {
             
             //TODO
             //Validate jira link in links.config
-            
+            String fileContents = new File('../links.config').getText('UTF-8')
         }
         
         stage("Get Jira Information"){
