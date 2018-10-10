@@ -22,10 +22,10 @@ def callGet(String url) {
 node {
     
     // ENVIRONMENTAL VARIABLES
-    def name = "springboot-corpancho-2"
-    def buildpackstring = ""
-    //def jobname = $JOB_NAME
-    BUSINESS_INFO = ""
+    def NAME = "springboot-corpancho-2"
+    def BUILDPACKSTRING = ""
+    def JIRALINK = ""
+    def BUSINESS_INFO = ""
     
     deleteDir()
 
@@ -44,25 +44,21 @@ node {
 
     dir("") {
         
-        /*
+        
         stage("Build"){
             sh "gradle build"
         }
-        */
+        
         stage("Validating Config"){
             //TODO
             //Validate jira link in links.config
             def currentDir = new File(".").absolutePath
-            //def workspace = "workspace"
-            //def build = Thread.currentThread().toString()
-            //def regexp= ".+?/job/([^/]+)/.*"
-            //def match = build  =~ regexp
-            //def jobName = match[0][1]
-            //def file = new File(currentDir+workspace+jobName+"/links.config").text
-            //String jobName = System.getenv('JOB_NAME')
             env.WORKSPACE = pwd() // present working directory.
             def file = readFile "${env.WORKSPACE}/links.config"
-            echo file
+            def trimmedText = (file.text).trim()
+            JIRALINK = trimmedText.indexOf("jira", 0)
+            echo trimmedText
+            echo JIRALINK
         }
         
         stage("Get Jira Information"){
@@ -140,7 +136,7 @@ node {
             echo "JSONSTRING: ${jsonstring}"
             
             try {
-                    callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
+                    //callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
