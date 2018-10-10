@@ -26,7 +26,7 @@ node {
     def buildpackstring = ""
     //def jobname = $JOB_NAME
     BUSINESS_INFO = ""
-    /*
+    
     deleteDir()
 
     stage('Sources') {
@@ -40,7 +40,7 @@ node {
                                     ]]
                 ])
     }
-    */
+    
 
     dir("") {
         
@@ -49,6 +49,12 @@ node {
             sh "gradle build"
         }
         
+        stage("Validating Config"){
+            
+            //TODO
+            //Validate jira link in links.config
+            
+        }
         
         stage("Get Jira Information"){
             //TODO
