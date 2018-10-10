@@ -58,7 +58,7 @@ node {
             def file = readFile "${env.WORKSPACE}/links.config"
             def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\r\n',' ').replaceAll(" ",";").split(";")
             //JIRALINK = trimmedText.indexOf("jira", 0)
-            echo trimmedText
+            echo "trimmedText: ${trimmedText}"
             def index = Arrays.asList(trimmedText).lastIndexOf("jira");
             echo index
             echo trimmedText[index+1]
