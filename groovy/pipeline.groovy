@@ -139,6 +139,7 @@ node {
             def iterations = APP_BUILDPACKS.size()
             def buildpacks = "  \"service\": { \"buildpacks\":["
             for (i = 0; i <iterations; i++) {
+                APP_BUILDPACKS[i].replaceAll("\n","").replaceAll(" ","")
                 buildpacks = buildpacks+"\""+APP_BUILDPACKS[i]+"\","
             }
             buildpacks = buildpacks.substring(0, (buildpacks.length())-1) //remove last coma
