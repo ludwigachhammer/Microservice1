@@ -120,7 +120,7 @@ node {
         }
         
         
-        stage("Get Runtime Behaviour"){
+        stage("Get Runtime Information"){
             APP_STATUS = sh (
                 script: 'cf app '+NAME,
                 returnStdout: true
