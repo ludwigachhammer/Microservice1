@@ -56,7 +56,7 @@ node {
             def currentDir = new File(".").absolutePath
             env.WORKSPACE = pwd() // present working directory.
             def file = readFile "${env.WORKSPACE}/links.config"
-            def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\r\n',' ')replaceAll("\\s",";").split(";")
+            def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\r\n',' ').replaceAll("\\s",";").split(";")
             echo "trimmedText: ${trimmedText}"
             int index = -1;
             for (int i=0;i<trimmedText.length;i++) {
@@ -81,6 +81,11 @@ node {
             def description = ""
             def short_name = ""
             def type = ""
+            Domain: XXX
+            Subdomain: XXX
+            Product: XXX
+            Owner: XXX
+            Description: XXX
             */
             //def basicinfo = "\"id\": \"XXX\", \"name\": \"XXX\", \"owner\": \"XXX\", \"description\": \"XXX\", \"short_name\": \"XXX\", \"type\": \"XXX\","
             DOMAIN = "Finance"
