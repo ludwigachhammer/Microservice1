@@ -56,7 +56,7 @@ node {
             def currentDir = new File(".").absolutePath
             env.WORKSPACE = pwd() // present working directory.
             def file = readFile "${env.WORKSPACE}/links.config"
-            def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\n',' ').replaceAll(/\s\s+/g,";").split(";")
+            def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\n',' ').replaceAll(" +",";").split(";")
             echo "trimmedText: ${trimmedText}"
             int index = -1;
             for (int i=0;i<trimmedText.length;i++) {
