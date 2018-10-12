@@ -24,6 +24,7 @@ node {
     // ENVIRONMENTAL VARIABLES
     def NAME = "springboot-corpancho-2"
     def BUILDPACKSTRING = ""
+    def LINKS = ""
     def JIRALINK = ""
     def BUSINESS_INFO = ""
     
@@ -69,6 +70,10 @@ node {
             String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]" //website regex
             //TODO 
             //JIRALINK matches regex
+            for (i = 1; i <trimmedText.size(); i = i+2) {
+                LINKS = LINKS+"\""+trimmedText[i]+"\":"+"\""+trimmedText[i+1]+"\","
+            }
+            echo LINKS
         }
         
         stage("Get Jira Information"){
