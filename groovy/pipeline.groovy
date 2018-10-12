@@ -45,11 +45,9 @@ node {
 
     dir("") {
         
-        /*
         stage("Build"){
             sh "gradle build"
         }
-        */
         
         stage("Validating Config"){
             //TODO
@@ -73,6 +71,7 @@ node {
             for (i = 1; i <trimmedText.size(); i = i+2) {
                 LINKS = LINKS+"\""+trimmedText[i]+"\":"+"\""+trimmedText[i+1]+"\","
             }
+            LINKS = LINKS.substring(0, (LINKS.length())-1)//remove last coma
             echo LINKS
         }
         
@@ -153,11 +152,11 @@ node {
             def basicinfo = "\"id\": \"09876513541465\", \"name\": \""+name+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\","
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" },"
             
-            def jsonstring = "{"+basicinfo+runtime+BUILDPACKSTRING+"}"
+            def jsonstring = "{"+basicinfo+runtime+BUILDPACKSTRING+","+LINKS+"}"
             echo "JSONSTRING: ${jsonstring}"
             
             try {
-                    //callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
+                    callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
