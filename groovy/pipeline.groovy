@@ -148,6 +148,12 @@ node {
             buildpacks = buildpacks.substring(0, (buildpacks.length())-1) //remove last coma
             BUILDPACKSTRING = buildpacks+"] } "
             echo "buildpackstring: ${BUILDPACKSTRING}"
+            //TODO network policies
+            CF_NETWORK_POLICIES = sh (
+                script: 'cf network-policies',
+                returnStdout: true
+            )
+            echo "CF_NETWORK_POLICIES: ${CF_NETWORK_POLICIES}"
         }//stage
         
         
