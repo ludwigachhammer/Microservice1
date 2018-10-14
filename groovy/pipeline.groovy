@@ -27,7 +27,7 @@ node {
     def LINKS = ""
     def JIRALINK = ""
     def BUSINESS_INFO = ""
-    
+    /*
     deleteDir()
 
     stage('Sources') {
@@ -42,9 +42,9 @@ node {
                 ])
     }
     
-
+    */
     dir("") {
-        
+        /*
         stage("Build"){
             sh "gradle build"
         }
@@ -92,6 +92,7 @@ node {
             Description: XXX
             */
             //def basicinfo = "\"id\": \"XXX\", \"name\": \"XXX\", \"owner\": \"XXX\", \"description\": \"XXX\", \"short_name\": \"XXX\", \"type\": \"XXX\","
+            /*
             DOMAIN = "Finance"
             SUBDOMAIN = "Taxes"
             BUSINESS_CAPABILITY = "tax_calculation"
@@ -119,7 +120,7 @@ node {
             }
         }
         
-        
+        */
         stage("Get Runtime Information"){
             APP_STATUS = sh (
                 script: 'cf app '+NAME,
@@ -153,7 +154,8 @@ node {
                 script: 'cf network-policies --source '+NAME,
                 returnStdout: true
             )
-            echo "CF_NETWORK_POLICIES_SOURCE: ${CF_NETWORK_POLICIES_SOURCE}"
+            CF_NETWORK_POLICIES = CF_NETWORK_POLICIES_SOURCE.substring(CF_NETWORK_POLICIES_SOURCE.indexOf("ports", 0), (CF_NETWORK_POLICIES_SOURCE.length())-1)
+            echo "CF_NETWORK_POLICIES: ${CF_NETWORK_POLICIES}"
             /*
             CF_NETWORK_POLICIES_DESTINATION = sh (
                 script: 'cf network-policies --destination '+NAME,
@@ -163,7 +165,7 @@ node {
             */
         }//stage
         
-        
+        /*
         stage("Push Documentation"){
             //TODO generate ID, ... (basic info)
             def basicinfo = "\"id\": \"09876513541465\", \"name\": \""+NAME+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\","
@@ -178,7 +180,7 @@ node {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
         }//stage
-        
+        */
     }
 
 }
