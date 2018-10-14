@@ -27,7 +27,7 @@ node {
     def LINKS = ""
     def JIRALINK = ""
     def BUSINESS_INFO = ""
-    /*
+    
     deleteDir()
 
     stage('Sources') {
@@ -42,9 +42,9 @@ node {
                 ])
     }
     
-    */
+   
     dir("") {
-        /*
+        
         stage("Build"){
             sh "gradle build"
         }
@@ -92,7 +92,7 @@ node {
             Description: XXX
             */
             //def basicinfo = "\"id\": \"XXX\", \"name\": \"XXX\", \"owner\": \"XXX\", \"description\": \"XXX\", \"short_name\": \"XXX\", \"type\": \"XXX\","
-            /*
+            
             DOMAIN = "Finance"
             SUBDOMAIN = "Taxes"
             BUSINESS_CAPABILITY = "tax_calculation"
@@ -120,7 +120,7 @@ node {
             }
         }
         
-        */
+        
         stage("Get Runtime Information"){
             APP_STATUS = sh (
                 script: 'cf app '+NAME,
@@ -182,7 +182,7 @@ node {
             echo "JSONSTRING: ${jsonstring}"
             
             try {
-                    //callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
+                    callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
