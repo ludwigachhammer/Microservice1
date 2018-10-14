@@ -149,11 +149,18 @@ node {
             BUILDPACKSTRING = buildpacks+"] } "
             echo "buildpackstring: ${BUILDPACKSTRING}"
             //TODO network policies
-            CF_NETWORK_POLICIES = sh (
-                script: 'cf network-policies',
+            CF_NETWORK_POLICIES_SOURCE = sh (
+                script: 'cf network-policies --source '+NAME,
                 returnStdout: true
             )
-            echo "CF_NETWORK_POLICIES: ${CF_NETWORK_POLICIES}"
+            echo "CF_NETWORK_POLICIES_SOURCE: ${CF_NETWORK_POLICIES_SOURCE}"
+            /*
+            CF_NETWORK_POLICIES_DESTINATION = sh (
+                script: 'cf network-policies --destination '+NAME,
+                returnStdout: true
+            )
+            echo "CF_NETWORK_POLICIES_DESTINATION: ${CF_NETWORK_POLICIES_DESTINATION}"
+            */
         }//stage
         
         
