@@ -156,6 +156,7 @@ node {
             )
             CF_NETWORK_POLICIES = CF_NETWORK_POLICIES_SOURCE.substring((CF_NETWORK_POLICIES_SOURCE.indexOf("ports", 0)+5), (CF_NETWORK_POLICIES_SOURCE.length())-1)
             CF_NETWORK_POLICIES = CF_NETWORK_POLICIES.trim().replaceAll('\t',' ').replaceAll('\r\n',' ')replaceAll(" +",";").split(";")
+            echo "CF_NETWORK_POLICIES: ${CF_NETWORK_POLICIES}"
             APP_SERVICES = " \"service\": {  \"provides\": ["
             for (int i=0;i<(CF_NETWORK_POLICIES.size() / 4);i++) {
                 APP_SERVICES = APP_SERVICES + "{\"service_name\": \""+CF_NETWORK_POLICIES[1+i*4]+"\"},"
