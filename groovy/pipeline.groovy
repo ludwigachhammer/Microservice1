@@ -22,7 +22,7 @@ def callGet(String url) {
 node {
     
     // GLOBAL VARIABLES
-    def NAME = "springboot-corpancho-2"
+    def NAME = "springboot-corpancho-1"
     def BUILDPACKSTRING = ""
     def LINKS = ""
     def JIRALINK = ""
@@ -154,7 +154,7 @@ node {
                 script: 'cf network-policies --source '+NAME,
                 returnStdout: true
             )
-            CF_NETWORK_POLICIES = CF_NETWORK_POLICIES_SOURCE.substring(CF_NETWORK_POLICIES_SOURCE.indexOf("ports", 0), (CF_NETWORK_POLICIES_SOURCE.length())-1)
+            CF_NETWORK_POLICIES = CF_NETWORK_POLICIES_SOURCE.substring((CF_NETWORK_POLICIES_SOURCE.indexOf("ports", 0)+5), (CF_NETWORK_POLICIES_SOURCE.length())-1)
             echo "CF_NETWORK_POLICIES: ${CF_NETWORK_POLICIES}"
             /*
             CF_NETWORK_POLICIES_DESTINATION = sh (
