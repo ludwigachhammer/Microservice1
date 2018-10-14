@@ -155,7 +155,7 @@ node {
                 returnStdout: true
             )
             CF_NETWORK_POLICIES = CF_NETWORK_POLICIES_SOURCE.substring((CF_NETWORK_POLICIES_SOURCE.indexOf("ports", 0)+5), (CF_NETWORK_POLICIES_SOURCE.length())-1)
-            CF_NETWORK_POLICIES = CF_NETWORK_POLICIES.trim().replaceAll('\t',' ').replaceAll('\r\n',' ')replaceAll(" +","").split(";")
+            CF_NETWORK_POLICIES = CF_NETWORK_POLICIES.trim().replaceAll('\t',' ').replaceAll('\r\n',' ')replaceAll(" +",";").split(";")
             echo "CF_NETWORK_POLICIES: ${CF_NETWORK_POLICIES}"
             /*
             CF_NETWORK_POLICIES_DESTINATION = sh (
