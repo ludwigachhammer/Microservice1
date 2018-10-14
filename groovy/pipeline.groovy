@@ -176,7 +176,7 @@ node {
         
         stage("Push Documentation"){
             //TODO generate ID, ... (basic info)
-            def basicinfo = "\"id\": \"09876513541465\", \"name\": \""+NAME+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\","
+            def basicinfo = "\"id\": \"141018\", \"name\": \""+NAME+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\","
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" },"
             echo "LINKS: ${LINKS}"
             def jsonstring = "{"+basicinfo+runtime+BUILDPACKSTRING+","+LINKS+","+APP_SERVICES+"}"
