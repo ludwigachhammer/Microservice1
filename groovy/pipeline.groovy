@@ -156,7 +156,13 @@ node {
             )
             CF_NETWORK_POLICIES = CF_NETWORK_POLICIES_SOURCE.substring((CF_NETWORK_POLICIES_SOURCE.indexOf("ports", 0)+5), (CF_NETWORK_POLICIES_SOURCE.length())-1)
             CF_NETWORK_POLICIES = CF_NETWORK_POLICIES.trim().replaceAll('\t',' ').replaceAll('\r\n',' ')replaceAll(" +",";").split(";")
-            echo "CF_NETWORK_POLICIES: ${CF_NETWORK_POLICIES}"
+            APP_SERVICES = " \"service\": {  \"provides\": ["
+            for (int i=0;i<(CF_NETWORK_POLICIES.size() / 4);i++) {
+                APP_SERVICES = APP_SERVICES + "{\"service_name\": \""+CF_NETWORK_POLICIES[1+i*4]+"\"},"
+            }
+            APP_SERVICES = APP_SERVICES.substring(0, (APP_SERVICES.length())-1) //remove last coma
+            APP_SERVICES = APP_SERVICES + "]}"
+            echo "APP_SERVICES: ${APP_SERVICES}"
             /*
             CF_NETWORK_POLICIES_DESTINATION = sh (
                 script: 'cf network-policies --destination '+NAME,
@@ -166,22 +172,22 @@ node {
             */
         }//stage
         
-        /*
+        
         stage("Push Documentation"){
             //TODO generate ID, ... (basic info)
             def basicinfo = "\"id\": \"09876513541465\", \"name\": \""+NAME+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\","
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" },"
             echo "LINKS: ${LINKS}"
-            def jsonstring = "{"+basicinfo+runtime+BUILDPACKSTRING+","+LINKS+"}"
+            def jsonstring = "{"+basicinfo+runtime+BUILDPACKSTRING+","+LINKS+","+APP_SERVICES+"}"
             echo "JSONSTRING: ${jsonstring}"
             
             try {
-                    callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
+                    //callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
         }//stage
-        */
+       
     }
 
 }
