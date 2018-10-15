@@ -22,7 +22,7 @@ def callGet(String url) {
 node {
     
     // GLOBAL VARIABLES
-    def NAME = "springboot-corpancho-1"
+    def NAME = "springboot-corpancho-2"
     def BUILDPACKSTRING = ""
     def LINKS = ""
     def JIRALINK = ""
