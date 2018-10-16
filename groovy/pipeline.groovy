@@ -187,23 +187,23 @@ node {
             */
         /*
         }//stage
-        
+        */
         
         stage("Push Documentation"){
             //TODO generate ID, ... (basic info)
             def basicinfo = "\"id\": \"14101812\", \"name\": \""+NAME+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\""
-            def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
-            echo "LINKS: ${LINKS}"
-            def jsonstring = "{"+basicinfo+","+runtime+","+LINKS+","+APP_SERVICES+"}"
+            //def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
+            //echo "LINKS: ${LINKS}"
+            //def jsonstring = "{"+basicinfo+","+runtime+","+LINKS+","+APP_SERVICES+"}"
             echo "JSONSTRING: ${jsonstring}"
             
             try {
-                    callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
+                    //callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
         }//stage
-       */
+       
     }
 
 }
