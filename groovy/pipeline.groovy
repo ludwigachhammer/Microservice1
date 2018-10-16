@@ -95,30 +95,17 @@ node {
         }
         */
         stage("Get Jira Information"){
-            //TODO: GET /rest/api/2/project/{projectIdOrKey}
-            /*
+            //TODO: API Call to JIRALINK
+            //GET /rest/api/2/project/{projectIdOrKey}
             // http://localhost:8099/
-            API Call to JIRALINK
-            def id = ""
-            def appName = ""
-            def owner = ""
-            def description = ""
-            def short_name = ""
-            def type = ""
-            Domain: XXX
-            Subdomain: XXX
-            Product: XXX
-            Owner: XXX
-            Description: XXX
-            */
             def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
-            echo "jiraProject: ${jiraProject}"
+            //echo "jiraProject: ${jiraProject}"
             def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.key+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
-            DOMAIN = "Finance"
-            SUBDOMAIN = "Taxes"
-            BUSINESS_CAPABILITY = "tax_calculation"
-            BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "
-        
+            echo "BASIC INFO: ${basicinfo}"
+            //DOMAIN = "Finance"
+            //SUBDOMAIN = "Taxes"
+            //PRODUCT = "tax_calculation"
+            //BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "       
         }
         /*
         stage('Deploy') {
