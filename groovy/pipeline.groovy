@@ -120,7 +120,7 @@ node {
                 List<String> subdomainslist = Arrays.asList(subdomains);
                 List<String> productslist = Arrays.asList(products);
                 if(!domainslist.contains(domain_tmp)){
-                    domain.add(domain_tmp)
+                    domains.add(domain_tmp)
                 }
             }
             echo "DOMAIN: ${domains}"
