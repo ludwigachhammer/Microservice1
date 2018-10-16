@@ -76,8 +76,9 @@ node {
         }
         
         stage("Get Jira Information"){
-            //TODO
+            //TODO: GET /rest/api/2/project/{projectIdOrKey}
             /*
+            // http://localhost:8099/
             API Call to JIRALINK
             def id = ""
             def appName = ""
@@ -92,7 +93,8 @@ node {
             Description: XXX
             */
             //def basicinfo = "\"id\": \"XXX\", \"name\": \"XXX\", \"owner\": \"XXX\", \"description\": \"XXX\", \"short_name\": \"XXX\", \"type\": \"XXX\","
-            
+            def jiraProject = callGet("http://localhost:8099/rest/api/2/project/MAST")
+            echo "jiraProject: ${jiraProject}"
             DOMAIN = "Finance"
             SUBDOMAIN = "Taxes"
             BUSINESS_CAPABILITY = "tax_calculation"
