@@ -20,15 +20,14 @@ def callGetJira(String urlString) {
     def connection = url.openConnection()
     connection.setRequestMethod("GET")
     def encoded = ""
-    /*
     withCredentials([[
                              $class          : 'UsernamePasswordMultiBinding',
-                             credentialsId   : 'XXX',
+                             credentialsId   : '65220318-765b-4be8-8244-e7ed8f84ecd7',
                              usernameVariable: 'JIRA_USERNAME',
                              passwordVariable: 'JIRA_PASSWORD'
                      ]]) {
         encoded = (JIRA_USERNAME+":"+JIRA_PASSWORD).bytes.encodeBase64().toString()
-    }*/
+    }
     def basicauth = "Basic ${encoded}"
     connection.setRequestProperty("Authorization", basicauth)
     connection.connect()
