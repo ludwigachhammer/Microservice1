@@ -27,7 +27,7 @@ node {
     def LINKS = ""
     def JIRALINK = ""
     def BUSINESS_INFO = ""
-    
+    /*
     deleteDir()
 
     stage('Sources') {
@@ -42,9 +42,9 @@ node {
                 ])
     }
     
-   
+   */
     dir("") {
-        
+        /*
         stage("Build"){
             sh "gradle build"
         }
@@ -74,7 +74,7 @@ node {
             LINKS = LINKS.substring(0, (LINKS.length())-1)//remove last coma
             echo LINKS
         }
-        
+        */
         stage("Get Jira Information"){
             //TODO: GET /rest/api/2/project/{projectIdOrKey}
             /*
@@ -101,7 +101,7 @@ node {
             BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "
         
         }
-        
+        /*
         stage('Deploy') {
             def branch = ['master']
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
@@ -174,6 +174,7 @@ node {
             )
             echo "CF_NETWORK_POLICIES_DESTINATION: ${CF_NETWORK_POLICIES_DESTINATION}"
             */
+        /*
         }//stage
         
         
@@ -191,7 +192,7 @@ node {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
         }//stage
-       
+       */
     }
 
 }
