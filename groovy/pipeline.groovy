@@ -19,6 +19,17 @@ def callGetJira(String urlString) {
     def url = new URL(urlString)
     def connection = url.openConnection()
     connection.setRequestMethod("GET")
+    /*
+    withCredentials([[
+                             $class          : 'UsernamePasswordMultiBinding',
+                             credentialsId   : '98c5d653-dbdc-4b52-81ba-50c2ac04e4f1',
+                             usernameVariable: 'CF_USERNAME',
+                             passwordVariable: 'CF_PASSWORD'
+                     ]]) {
+        sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
+        sh 'cf target -o ncorpan-org -s development'
+        sh 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
+    }*/
     def encoded = ("ncorpan:Gringoloco1").bytes.encodeBase64().toString()
     def basicauth = "Basic ${encoded}"
     connection.setRequestProperty("Authorization", basicauth)
