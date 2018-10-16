@@ -95,12 +95,23 @@ node {
             //TODO: API Call to JIRALINK
             //GET /rest/api/2/project/{projectIdOrKey}
             // http://localhost:8099/
+            // customfield_10007: Domain
+            // customfield_10008: Subdomain
+            // customfield_10009: Product
             def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
-            def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
-            echo "BASIC INFO: ${basicinfo}"
+            def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST")
+            def issues = reponse.issues
+            echo "ISSUES: ${issues}"
             //DOMAIN = "Finance"
             //SUBDOMAIN = "Taxes"
             //PRODUCT = "tax_calculation"
+            /* .fields.customfield_00X.value
+            for (i = 0; i <iterations; i++) {
+                
+            }
+            /*
+            def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
+            echo "BASIC INFO: ${basicinfo}"
             //BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "       
         }
         /*
