@@ -108,24 +108,20 @@ node {
             // customfield_10009: Product
             def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST")
             //echo "ISSUES: ${response}"
-            def domains = []
-            def subdomains = []
-            def products = []
+            List<String> domains = new ArrayList<String>()
+            List<String> subdomains = new ArrayList<String>()
+            List<String> products = new ArrayList<String>()
             for (i = 0; i <response.issues.size(); i++) {
-                //TODO
                 domain_tmp = response.issues[i].fields.customfield_10007.value
                 subdomain_tmp = response.issues[i].fields.customfield_10008.value
                 product_tmp = response.issues[i].fields.customfield_10009
-                List<String> domainslist = Arrays.asList(domains);
-                List<String> subdomainslist = Arrays.asList(subdomains);
-                List<String> productslist = Arrays.asList(products);
-                if(!domainslist.contains(domain_tmp)){
+                if(!domains.contains(domain_tmp)){
                     domains.add(domain_tmp)
                 }
-                if(!subdomainslist.contains(subdomain_tmp)){
+                if(!subdomains.contains(subdomain_tmp)){
                     subdomains.add(subdomain_tmp)
                 }
-                if(!productslist.contains(product_tmp)){
+                if(!products.contains(product_tmp)){
                     products.add(product_tmp)
                 }
             }
