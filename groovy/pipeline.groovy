@@ -107,7 +107,7 @@ node {
             // customfield_10008: Subdomain
             // customfield_10009: Product
             def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST")
-            echo "ISSUES: ${response}"
+            //echo "ISSUES: ${response}"
             def domains = []
             def subdomains = []
             def products = []
