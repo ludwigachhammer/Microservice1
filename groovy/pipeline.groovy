@@ -91,7 +91,7 @@ node {
             echo LINKS
         }
         */
-        stage("Get Jira Information"){
+        stage("Get Basic Jira Information"){
             //TODO: API Call to JIRALINK
             //GET /rest/api/2/project/{projectIdOrKey}
             // http://localhost:8099/
@@ -110,6 +110,24 @@ node {
             //}
             def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             echo "BASIC INFO: ${basicinfo}"
+            //BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "       
+        }
+        stage("Get Business Jira Information"){
+            //TODO: API Call to JIRALINK
+            //GET /rest/api/2/project/{projectIdOrKey}
+            // http://localhost:8099/
+            // customfield_10007: Domain
+            // customfield_10008: Subdomain
+            // customfield_10009: Product
+            def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST")
+            echo "ISSUES: ${response}"
+            //DOMAIN = "Finance"
+            //SUBDOMAIN = "Taxes"
+            //PRODUCT = "tax_calculation"
+            //.fields.customfield_00X.value
+            //for (i = 0; i <reponse.issues.size(); i++) {
+                //TODO
+            //}
             //BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "       
         }
         /*
