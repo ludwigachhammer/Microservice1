@@ -19,18 +19,16 @@ def callGetJira(String urlString) {
     def url = new URL(urlString)
     def connection = url.openConnection()
     connection.setRequestMethod("GET")
+    def encoded = ""
     /*
     withCredentials([[
                              $class          : 'UsernamePasswordMultiBinding',
-                             credentialsId   : '98c5d653-dbdc-4b52-81ba-50c2ac04e4f1',
-                             usernameVariable: 'CF_USERNAME',
-                             passwordVariable: 'CF_PASSWORD'
+                             credentialsId   : 'XXX',
+                             usernameVariable: 'JIRA_USERNAME',
+                             passwordVariable: 'JIRA_PASSWORD'
                      ]]) {
-        sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
-        sh 'cf target -o ncorpan-org -s development'
-        sh 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
+        encoded = (JIRA_USERNAME+":"+JIRA_PASSWORD).bytes.encodeBase64().toString()
     }*/
-    def encoded = ("ncorpan:Gringoloco1").bytes.encodeBase64().toString()
     def basicauth = "Basic ${encoded}"
     connection.setRequestProperty("Authorization", basicauth)
     connection.connect()
@@ -99,8 +97,7 @@ node {
             //GET /rest/api/2/project/{projectIdOrKey}
             // http://localhost:8099/
             def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
-            //echo "jiraProject: ${jiraProject}"
-            def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.key+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
+            def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             echo "BASIC INFO: ${basicinfo}"
             //DOMAIN = "Finance"
             //SUBDOMAIN = "Taxes"
