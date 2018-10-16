@@ -43,7 +43,7 @@ node {
     def LINKS = ""
     def JIRALINK = ""
     def BUSINESS_INFO = ""
-    /*
+    
     deleteDir()
 
     stage('Sources') {
@@ -57,10 +57,8 @@ node {
                                     ]]
                 ])
     }
-    
-   */
+
     dir("") {
-        /*
         stage("Build"){
             sh "gradle build"
         }
@@ -90,14 +88,13 @@ node {
             LINKS = LINKS.substring(0, (LINKS.length())-1)//remove last coma
             echo LINKS
         }
-        */
+        
         stage("Get Basic Jira Information"){
             //TODO: API Call to JIRALINK
             //GET http://localhost:8099/rest/api/2/project/{projectIdOrKey}
             def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
             def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             echo "BASIC INFO: ${basicinfo}"
-            //BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "       
         }
         stage("Get Business Jira Information"){
             //TODO: API Call to JIRALINK
@@ -128,9 +125,9 @@ node {
             echo "DOMAIN: ${domains}"
             echo "DOMAIN: ${subdomains}"
             echo "DOMAIN: ${products}"
-            //BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "       
+            BUSINESS_INFO = " \"domain\": \"${domains[0]}\", \"subdomain\": \"${subdomains[0]}\", \"product\": \"${products[0]}\" "       
         }
-        /*
+        
         stage('Deploy') {
             def branch = ['master']
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
@@ -196,27 +193,23 @@ node {
             APP_SERVICES = BUILDPACKSTRING + APP_SERVICES + "]}"
             echo "APP_SERVICES: ${APP_SERVICES}"
             
-            /*
             CF_NETWORK_POLICIES_DESTINATION = sh (
                 script: 'cf network-policies --destination '+NAME,
                 returnStdout: true
             )
             echo "CF_NETWORK_POLICIES_DESTINATION: ${CF_NETWORK_POLICIES_DESTINATION}"
-            */
-        /*
+            
         }//stage
-        */
         
         stage("Push Documentation"){
-            //TODO generate ID, ... (basic info)
-            //def basicinfo = "\"id\": \"14101812\", \"name\": \""+NAME+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\""
-            //def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
-            //echo "LINKS: ${LINKS}"
-            //def jsonstring = "{"+basicinfo+","+runtime+","+LINKS+","+APP_SERVICES+"}"
-            //echo "JSONSTRING: ${jsonstring}"
+            def basicinfo = "\"id\": \"14101812\", \"name\": \""+NAME+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\""
+            def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
+            echo "LINKS: ${LINKS}"
+            def jsonstring = "{"+basicinfo+","+runtime+","+LINKS+","+APP_SERVICES+"}"
+            echo "JSONSTRING: ${jsonstring}"
             
             try {
-                    //callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
+                    callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
