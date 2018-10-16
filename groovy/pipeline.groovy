@@ -100,9 +100,9 @@ node {
             Owner: XXX
             Description: XXX
             */
-            //def basicinfo = "\"id\": \"XXX\", \"name\": \"XXX\", \"owner\": \"XXX\", \"description\": \"XXX\", \"short_name\": \"XXX\", \"type\": \"XXX\","
             def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
             echo "jiraProject: ${jiraProject}"
+            def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.key+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             DOMAIN = "Finance"
             SUBDOMAIN = "Taxes"
             BUSINESS_CAPABILITY = "tax_calculation"
