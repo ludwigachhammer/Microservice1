@@ -15,7 +15,7 @@ def callPost(String urlString, String queryString) {
     new groovy.json.JsonSlurper().parseText(connection.content.text)
 }
 
-def callGetJIRA(String urlString) {
+def callGetJira(String urlString) {
     def url = new URL(urlString)
     def connection = url.openConnection()
     connection.setRequestMethod("GET")
@@ -101,7 +101,7 @@ node {
             Description: XXX
             */
             //def basicinfo = "\"id\": \"XXX\", \"name\": \"XXX\", \"owner\": \"XXX\", \"description\": \"XXX\", \"short_name\": \"XXX\", \"type\": \"XXX\","
-            def jiraProject = callGet("http://localhost:8099/rest/api/2/project/MAST")
+            def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
             echo "jiraProject: ${jiraProject}"
             DOMAIN = "Finance"
             SUBDOMAIN = "Taxes"
