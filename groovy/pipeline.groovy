@@ -94,7 +94,7 @@ node {
             //GET http://localhost:8099/rest/api/2/project/{projectIdOrKey}
             def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
             BASIC_INFO = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
-            echo "BASIC INFO: ${basicinfo}"
+            echo "BASIC INFO: ${BASIC_INFO}"
         }
         stage("Get Business Jira Information"){
             // customfield_10007: Domain
