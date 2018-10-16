@@ -99,8 +99,8 @@ node {
             // customfield_10008: Subdomain
             // customfield_10009: Product
             def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
-            //def response = [callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST")]
-            //echo "ISSUES: ${response}"
+            def response = [].add(callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST"))
+            echo "ISSUES: ${response}"
             //DOMAIN = "Finance"
             //SUBDOMAIN = "Taxes"
             //PRODUCT = "tax_calculation"
@@ -190,7 +190,7 @@ node {
         
         stage("Push Documentation"){
             //TODO generate ID, ... (basic info)
-            def basicinfo = "\"id\": \"14101812\", \"name\": \""+NAME+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\""
+            //def basicinfo = "\"id\": \"14101812\", \"name\": \""+NAME+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\""
             //def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
             //echo "LINKS: ${LINKS}"
             //def jsonstring = "{"+basicinfo+","+runtime+","+LINKS+","+APP_SERVICES+"}"
