@@ -113,9 +113,9 @@ node {
             def products = []
             for (i = 0; i <reponse.issues.size(); i++) {
                 //TODO
-                domain_tmp = reponse.issues[i].customfield_10007.value
-                subdomain_tmp = reponse.issues[i].customfield_10008.value
-                product_tmp = reponse.issues[i].customfield_10009
+                domain_tmp = response.issues[i].customfield_10007.value
+                subdomain_tmp = response.issues[i].customfield_10008.value
+                product_tmp = response.issues[i].customfield_10009
                 List<String> domainslist = Arrays.asList(domains);
                 List<String> subdomainslist = Arrays.asList(alphabet);
                 List<String> productslist = Arrays.asList(products);
