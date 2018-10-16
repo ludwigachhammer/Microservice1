@@ -99,14 +99,15 @@ node {
             // customfield_10008: Subdomain
             // customfield_10009: Product
             def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
-            def response = [].add(callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST"))
-            echo "ISSUES: ${response}"
+            def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST")
+            //echo "ISSUES: ${response}"
             //DOMAIN = "Finance"
             //SUBDOMAIN = "Taxes"
             //PRODUCT = "tax_calculation"
             //.fields.customfield_00X.value
-            //for (i = 0; i <reponse.size(); i++) {
-            //}
+            for (i = 0; i <reponse.issues.size(); i++) {
+                //TODO
+            }
             def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             echo "BASIC INFO: ${basicinfo}"
             //BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "       
