@@ -12,7 +12,7 @@ def callPost(String urlString, String queryString) {
     writer.close()
     connection.connect()
 
-    new groovy.json.JsonSlurper().parseText(connection.content.tex
+    new groovy.json.JsonSlurper().parseText(connection.content.text)
 }
 
 def callGetJira(String urlString) {
