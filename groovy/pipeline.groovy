@@ -39,6 +39,7 @@ node {
     
     // GLOBAL VARIABLES
     def NAME = "springboot-corpancho-1"
+    def BASIC_INFO = ""
     def BUILDPACKSTRING = ""
     def LINKS = ""
     def JIRALINK = ""
@@ -90,16 +91,12 @@ node {
         }
         
         stage("Get Basic Jira Information"){
-            //TODO: API Call to JIRALINK
             //GET http://localhost:8099/rest/api/2/project/{projectIdOrKey}
             def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
-            def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
+            BASIC_INFO = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             echo "BASIC INFO: ${basicinfo}"
         }
         stage("Get Business Jira Information"){
-            //TODO: API Call to JIRALINK
-            //GET /rest/api/2/project/{projectIdOrKey}
-            // http://localhost:8099/
             // customfield_10007: Domain
             // customfield_10008: Subdomain
             // customfield_10009: Product
@@ -191,23 +188,14 @@ node {
             }
             APP_SERVICES = APP_SERVICES.substring(0, (APP_SERVICES.length())-1) //remove last coma
             APP_SERVICES = BUILDPACKSTRING + APP_SERVICES + "]}"
-            echo "APP_SERVICES: ${APP_SERVICES}"
-            
-            CF_NETWORK_POLICIES_DESTINATION = sh (
-                script: 'cf network-policies --destination '+NAME,
-                returnStdout: true
-            )
-            echo "CF_NETWORK_POLICIES_DESTINATION: ${CF_NETWORK_POLICIES_DESTINATION}"
-            
+            echo "APP_SERVICES: ${APP_SERVICES}"            
         }//stage
         
         stage("Push Documentation"){
-            def basicinfo = "\"id\": \"14101812\", \"name\": \""+NAME+"\", \"owner\": \"Nico\", \"description\": \"bla\", \"short_name\": \"serviceAZ12\", \"type\": \"service\", \"status\": \"${APP_SHORTSTATUS[1]}\""
             def runtime = " \"runtime\": {\"ram\": \"${APP_SHORTSTATUS[4]}\", \"cpu\": \"${APP_SHORTSTATUS[3]}\", \"disk\": \"${APP_SHORTSTATUS[5]}\", \"host_type\": \"cloudfoundry\" }"
             echo "LINKS: ${LINKS}"
-            def jsonstring = "{"+basicinfo+","+runtime+","+LINKS+","+APP_SERVICES+"}"
+            def jsonstring = "{"+BASIC_INFO+BUSINESS_INFO","+runtime+","+LINKS+","+APP_SERVICES+"}"
             echo "JSONSTRING: ${jsonstring}"
-            
             try {
                     callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
                 } catch(e) {
