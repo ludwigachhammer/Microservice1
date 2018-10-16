@@ -117,7 +117,7 @@ node {
                 subdomain_tmp = response.issues[i].fields.customfield_10008.value
                 product_tmp = response.issues[i].fields.customfield_10009
                 List<String> domainslist = Arrays.asList(domains);
-                List<String> subdomainslist = Arrays.asList(alphabet);
+                List<String> subdomainslist = Arrays.asList(subdomains);
                 List<String> productslist = Arrays.asList(products);
                 if(!domainslist.contains(domain_tmp)){
                     domain.add(domain_tmp)
