@@ -99,8 +99,8 @@ node {
             // customfield_10008: Subdomain
             // customfield_10009: Product
             def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
-            def response = [callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST")]
-            echo "ISSUES: ${response}"
+            //def response = [callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST")]
+            //echo "ISSUES: ${response}"
             //DOMAIN = "Finance"
             //SUBDOMAIN = "Taxes"
             //PRODUCT = "tax_calculation"
