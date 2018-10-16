@@ -111,7 +111,7 @@ node {
             def domains = []
             def subdomains = []
             def products = []
-            for (i = 0; i <reponse.issues.size(); i++) {
+            for (i = 0; i <response.issues.size(); i++) {
                 //TODO
                 domain_tmp = response.issues[i].customfield_10007.value
                 subdomain_tmp = response.issues[i].customfield_10008.value
