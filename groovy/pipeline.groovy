@@ -15,8 +15,15 @@ def callPost(String urlString, String queryString) {
     new groovy.json.JsonSlurper().parseText(connection.content.text)
 }
 
-def callGet(String url) {
-    new groovy.json.JsonSlurper().parseText(url.toURL().getText())
+def callGetJIRA(String urlString) {
+    def url = new URL(urlString)
+    def connection = url.openConnection()
+    connection.setRequestMethod("GET")
+    def basic-auth = "Basic ${"ncorpan:Gringoloco1".bytes.encodeBase64().toString()}"
+    connection.setRequestProperty("Authorization", basic-auth)
+    connection.connect()
+
+    new groovy.json.JsonSlurper().parseText(connection.content.text)
 }
 
 node {
