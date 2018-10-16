@@ -119,7 +119,7 @@ node {
                 List<String> domainslist = Arrays.asList(domains);
                 List<String> subdomainslist = Arrays.asList(subdomains);
                 List<String> productslist = Arrays.asList(products);
-                if(domainslist.contains(domain_tmp) <> true){
+                if(domainslist.contains(domain_tmp) != true){
                     domains.add(domain_tmp)
                 }
             }
