@@ -19,7 +19,7 @@ def callGetJira(String urlString) {
     def url = new URL(urlString)
     def connection = url.openConnection()
     connection.setRequestMethod("GET")
-    def enconded = ("ncorpan:Gringoloco1").bytes.encodeBase64().toString()
+    def encoded = ("ncorpan:Gringoloco1").bytes.encodeBase64().toString()
     def basicauth = "Basic ${encoded}"
     connection.setRequestProperty("Authorization", basicauth)
     connection.connect()
