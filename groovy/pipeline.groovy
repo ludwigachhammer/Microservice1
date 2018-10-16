@@ -119,11 +119,19 @@ node {
                 List<String> domainslist = Arrays.asList(domains);
                 List<String> subdomainslist = Arrays.asList(subdomains);
                 List<String> productslist = Arrays.asList(products);
-                if(domainslist.contains(domain_tmp) != true){
+                if(!domainslist.contains(domain_tmp)){
                     domains.add(domain_tmp)
+                }
+                if(!subdomainslist.contains(subdomain_tmp)){
+                    subdomains.add(subdomain_tmp)
+                }
+                if(!productslist.contains(product_tmp)){
+                    products.add(product_tmp)
                 }
             }
             echo "DOMAIN: ${domains}"
+            echo "DOMAIN: ${subdomains}"
+            echo "DOMAIN: ${products}"
             //BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "       
         }
         /*
