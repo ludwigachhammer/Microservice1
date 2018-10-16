@@ -20,8 +20,8 @@ def callGetJIRA(String urlString) {
     def connection = url.openConnection()
     connection.setRequestMethod("GET")
     def enconded = ("ncorpan:Gringoloco1").bytes.encodeBase64().toString()
-    def basic-auth = "Basic ${encoded}"
-    connection.setRequestProperty("Authorization", basic-auth)
+    def basicauth = "Basic ${encoded}"
+    connection.setRequestProperty("Authorization", basicauth)
     connection.connect()
 
     new groovy.json.JsonSlurper().parseText(connection.content.text)
