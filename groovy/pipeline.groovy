@@ -38,7 +38,7 @@ def callGetJira(String urlString) {
 node {
     
     // GLOBAL VARIABLES
-    def NAME = "springboot-corpancho-2"
+    def NAME = "springboot-corpancho-1"
     def BUILDPACKSTRING = ""
     def LINKS = ""
     def JIRALINK = ""
