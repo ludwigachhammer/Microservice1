@@ -12,7 +12,7 @@ def callPost(String urlString, String queryString) {
     writer.close()
     connection.connect()
 
-    new groovy.json.JsonSlurper().parseText(connection.content.text)
+    new groovy.json.JsonSlurper().parseText(connection.content.tex
 }
 
 def callGetJira(String urlString) {
@@ -105,11 +105,9 @@ node {
             //DOMAIN = "Finance"
             //SUBDOMAIN = "Taxes"
             //PRODUCT = "tax_calculation"
-            /* .fields.customfield_00X.value
-            for (i = 0; i <iterations; i++) {
-                
-            }
-            /*
+            //.fields.customfield_00X.value
+            //for (i = 0; i <iterations; i++) { 
+            //}
             def basicinfo = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             echo "BASIC INFO: ${basicinfo}"
             //BUSINESS_INFO = " \"domain\": \"${DOMAIN}\", \"subdomain\": \"${SUBDOMAIN}\", \"business_capability\": \"${BUSINESS_CAPABILITY}\" "       
