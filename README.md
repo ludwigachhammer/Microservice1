@@ -1,2 +1,2 @@
-# MS-Repo
-Repository for set of MSs
+# Sample Microservice 1
+Repository of sample microservice 1
