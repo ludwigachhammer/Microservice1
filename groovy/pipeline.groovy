@@ -54,7 +54,7 @@ node {
                 extensions       : [[$class: 'CleanBeforeCheckout', localBranch: "master"]],
                 userRemoteConfigs: [[
                                             credentialsId: 'cbf178fa-56ee-4394-b782-36eb8932ac64',
-                                            url          : "https://github.com/Nicocovi/MS-Repo"
+                                            url          : "https://github.com/Nicocovi/Microservice1"
                                     ]]
                 ])
     }
@@ -92,7 +92,7 @@ node {
         
         stage("Get Basic Jira Information"){
             //GET http://localhost:8099/rest/api/2/project/{projectIdOrKey}
-            def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAST")
+            def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MIC")
             BASIC_INFO = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             echo "BASIC INFO: ${BASIC_INFO}"
         }
@@ -100,7 +100,7 @@ node {
             // customfield_10007: Domain
             // customfield_10008: Subdomain
             // customfield_10009: Product
-            def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAST")
+            def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MIC")
             //echo "ISSUES: ${response}"
             List<String> domains = new ArrayList<String>()
             List<String> subdomains = new ArrayList<String>()
