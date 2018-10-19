@@ -30,13 +30,12 @@ dependencies {
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
     // end::actuator[]
+    // tag::tests[]
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    // end::tests[]
     //Promethues Endpoint
     compile("io.prometheus:simpleclient_spring_boot:0.0.26")
     compile("io.prometheus:simpleclient_hotspot:0.0.26")
     compile("io.prometheus:simpleclient_servlet:0.0.26")
-    // tag::tests[]
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-    // end::tests[]
-    
 }
 
