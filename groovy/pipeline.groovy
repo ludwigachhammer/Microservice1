@@ -18,7 +18,7 @@ def callPost(String urlString, String queryString) {
 def callGetJira(String urlString) {
     withCredentials([[
                              $class          : 'UsernamePasswordMultiBinding',
-                             credentialsId   : '65220318-765b-4be8-8244-e7ed8f84ecd7',
+                             credentialsId   : '3d6714bc-18de-4603-bd94-d45a159541b5',
                              usernameVariable: 'JIRA_USERNAME',
                              passwordVariable: 'JIRA_PASSWORD'
                      ]]) {
@@ -53,7 +53,7 @@ node {
                 branches         : [[name: "refs/heads/master"]],
                 extensions       : [[$class: 'CleanBeforeCheckout', localBranch: "master"]],
                 userRemoteConfigs: [[
-                                            credentialsId: 'cbf178fa-56ee-4394-b782-36eb8932ac64',
+                                            credentialsId: '3e479734-15f2-4816-ba21-d3926da4e288',
                                             url          : "https://github.com/Nicocovi/Microservice1"
                                     ]]
                 ])
