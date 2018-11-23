@@ -103,15 +103,16 @@ node {
             // customfield_10007: Domain
             // customfield_10008: Subdomain
             // customfield_10009: Product
+            // changed due to Jira structure: Components
             def response = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/search?jql=project=ED")
             //echo "ISSUES: ${response}"
             List<String> domains = new ArrayList<String>()
             List<String> subdomains = new ArrayList<String>()
             List<String> products = new ArrayList<String>()
             for (i = 0; i <response.issues.size(); i++) {
-                domain_tmp = response.issues[i].fields.customfield_10007.value
-                subdomain_tmp = response.issues[i].fields.customfield_10008.value
-                product_tmp = response.issues[i].fields.customfield_10009
+                domain_tmp = 'IT'//response.issues[i].fields.customfield_10007.value
+                subdomain_tmp = 'IT-2'//response.issues[i].fields.customfield_10008.value
+                product_tmp = 'EA Documentation' //response.issues[i].fields.customfield_10009
                 if(!domains.contains(domain_tmp)){
                     domains.add(domain_tmp)
                 }
