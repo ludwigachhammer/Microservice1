@@ -86,6 +86,7 @@ node {
             //TODO 
             //JIRALINK matches regex
             for (i = 1; i <trimmedText.size(); i = i+2) {
+                echo "${trimmedText[i]} : ${trimmedText[i+1]}"
                 LINKS = LINKS+"\""+trimmedText[i]+"\":"+"\""+trimmedText[i+1]+"\","
             }
             LINKS = LINKS.substring(0, (LINKS.length())-1)//remove last coma
