@@ -61,7 +61,7 @@ node {
 
     dir("") {
         stage("Build"){
-            sh "gradlew build"
+            sh "sudo gradle build"
         }
         
         stage("Validating Config"){
