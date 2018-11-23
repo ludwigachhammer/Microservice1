@@ -73,7 +73,7 @@ node {
             def trimmedText = file.trim().replaceAll('\t',' ').replaceAll('\r\n',' ').replaceAll(" +",";").split(";")
             echo "trimmedText: ${trimmedText}"
             int index = -1;
-            for (int i=0;i<trimmedText.length;i++) {
+            for (int i=0;i<trimmedText.length-1;i++) {
                 if (trimmedText[i].contains("jira")) {
                     index = i+1;
                     break;
