@@ -61,7 +61,7 @@ node {
 
     dir("") {
         stage("Build"){
-            sh "gradle build"
+            sh "sudo gradle build"
         }
         
         stage("Validating Config"){
@@ -139,16 +139,16 @@ node {
                                      usernameVariable: 'CF_USERNAME',
                                      passwordVariable: 'CF_PASSWORD'
                              ]]) {
-                sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
-                sh 'cf target -o ncorpan-org -s development'
-                sh 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
+                sh 'sudo cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
+                sh 'sudo cf target -o ncorpan-org -s development'
+                sh 'sudo cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
             }
         }
         
         
         stage("Get Runtime Information"){
             APP_STATUS = sh (
-                script: 'cf app '+NAME,
+                script: 'sudo cf app '+NAME,
                 returnStdout: true
             )
             LENGTH = APP_STATUS.length()
@@ -176,7 +176,7 @@ node {
             echo "buildpackstring: ${BUILDPACKSTRING}"
             //TODO network policies
             CF_NETWORK_POLICIES_SOURCE = sh (
-                script: 'cf network-policies --source '+NAME,
+                script: 'sudo cf network-policies --source '+NAME,
                 returnStdout: true
             )
             CF_NETWORK_POLICIES = CF_NETWORK_POLICIES_SOURCE.substring((CF_NETWORK_POLICIES_SOURCE.indexOf("ports", 0)+5), (CF_NETWORK_POLICIES_SOURCE.length())-1)
