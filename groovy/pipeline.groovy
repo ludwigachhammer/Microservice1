@@ -79,7 +79,9 @@ node {
                     break;
                 }
             }
+            
             JIRALINK = trimmedText[index]
+            echo "JIRALINK: ${JIRALINK}"
             String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]" //website regex
             //TODO 
             //JIRALINK matches regex
