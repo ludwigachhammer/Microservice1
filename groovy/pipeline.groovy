@@ -85,7 +85,7 @@ node {
             String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]" //website regex
             //TODO 
             //JIRALINK matches regex
-            for (i = 1; i <trimmedText.size(); i = i+2) {
+            for (i = 0; i <trimmedText.size()-1; i = i+2) {
                 echo "${trimmedText[i]} : ${trimmedText[i+1]}"
                 LINKS = LINKS+"\""+trimmedText[i]+"\":"+"\""+trimmedText[i+1]+"\","
             }
