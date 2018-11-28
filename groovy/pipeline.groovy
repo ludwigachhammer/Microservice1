@@ -95,7 +95,7 @@ node {
         
         stage("Get Basic Jira Information"){
             //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
-            def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/ED")
+            def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/MAS")
             BASIC_INFO = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             echo "BASIC INFO: ${BASIC_INFO}"
         }
@@ -104,7 +104,7 @@ node {
             // customfield_10008: Subdomain
             // customfield_10009: Product
             // changed due to Jira structure: Components
-            def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=ED")
+            def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=MAS")
             //echo "ISSUES: ${response}"
             List<String> domains = new ArrayList<String>()
             List<String> subdomains = new ArrayList<String>()
