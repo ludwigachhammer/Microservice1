@@ -18,7 +18,7 @@ def callPost(String urlString, String queryString) {
 def callGetJira(String urlString) {
     withCredentials([[
                              $class          : 'UsernamePasswordMultiBinding',
-                             credentialsId   : '3d6714bc-18de-4603-bd94-d45a159541b5',
+                             credentialsId   : '65220318-765b-4be8-8244-e7ed8f84ecd7',
                              usernameVariable: 'JIRA_USERNAME',
                              passwordVariable: 'JIRA_PASSWORD'
                      ]]) {
@@ -53,7 +53,7 @@ node {
                 branches         : [[name: "refs/heads/master"]],
                 extensions       : [[$class: 'CleanBeforeCheckout', localBranch: "master"]],
                 userRemoteConfigs: [[
-                                            credentialsId: '3e479734-15f2-4816-ba21-d3926da4e288',
+                                            credentialsId: 'cbf178fa-56ee-4394-b782-36eb8932ac64',
                                             url          : "https://github.com/Nicocovi/Microservice1"
                                     ]]
                 ])
@@ -95,7 +95,7 @@ node {
         
         stage("Get Basic Jira Information"){
             //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
-            def jiraProject = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/project/ED")
+            def jiraProject = callGetJira("http://localhost:8099/rest/api/2/project/ED")
             BASIC_INFO = "\"id\": \""+jiraProject.id+"\", \"key\":\""+jiraProject.key+"\", \"name\": \""+jiraProject.name+"\", \"owner\": \""+jiraProject.lead.name+"\", \"description\": \""+jiraProject.description+"\", \"short_name\": \""+jiraProject.key+"\", \"type\": \""+jiraProject.projectTypeKey+"\","
             echo "BASIC INFO: ${BASIC_INFO}"
         }
@@ -104,7 +104,7 @@ node {
             // customfield_10008: Subdomain
             // customfield_10009: Product
             // changed due to Jira structure: Components
-            def response = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/search?jql=project=ED")
+            def response = callGetJira("http://localhost:8099/rest/api/2/search?jql=project=ED")
             //echo "ISSUES: ${response}"
             List<String> domains = new ArrayList<String>()
             List<String> subdomains = new ArrayList<String>()
@@ -139,7 +139,7 @@ node {
                }
                withCredentials([[
                                      $class          : 'UsernamePasswordMultiBinding',
-                                     credentialsId   : '3e479734-15f2-4816-ba21-d3926da4e288',
+                                     credentialsId   : '98c5d653-dbdc-4b52-81ba-50c2ac04e4f1',
                                      usernameVariable: 'CF_USERNAME',
                                      passwordVariable: 'CF_PASSWORD'
                              ]]) {
@@ -201,7 +201,7 @@ node {
             def jsonstring = "{"+BASIC_INFO+BUSINESS_INFO+","+runtime+","+LINKS+","+APP_SERVICES+"}"
             echo "JSONSTRING: ${jsonstring}"
             try {
-                    callPost("http://131.159.30.173:9123/document", jsonstring) //Include protocol
+                    callPost("http://192.168.99.100:9123/document", jsonstring) //Include protocol
                 } catch(e) {
                     // if no try and catch: jenkins prints an error "no content-type" but post request succeeds
                 }
