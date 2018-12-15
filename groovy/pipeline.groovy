@@ -90,7 +90,7 @@ node {
         }
         
         stage("Build"){
-            sh "gradle build"
+            sh "sudo gradle build"
         }
         
         stage("Get Basic Jira Information"){
