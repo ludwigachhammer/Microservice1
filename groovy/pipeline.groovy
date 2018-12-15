@@ -18,7 +18,7 @@ def callPost(String urlString, String queryString) {
 def callGetJira(String urlString) {
     withCredentials([[
                              $class          : 'UsernamePasswordMultiBinding',
-                             credentialsId   : '65220318-765b-4be8-8244-e7ed8f84ecd7',
+                             credentialsId   : '3d6714bc-18de-4603-bd94-d45a159541b5',
                              usernameVariable: 'JIRA_USERNAME',
                              passwordVariable: 'JIRA_PASSWORD'
                      ]]) {
