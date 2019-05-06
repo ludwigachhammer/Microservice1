@@ -38,7 +38,7 @@ def callGetJira(String urlString) {
 node {
     
     // GLOBAL VARIABLES
-    def NAME = "Masterarbeitssoftware-backend"
+    def NAME = "mock-microservice1"
     def BASIC_INFO = ""
     def BUILDPACKSTRING = ""
     def LINKS = ""
@@ -53,8 +53,8 @@ node {
                 branches         : [[name: "refs/heads/master"]],
                 extensions       : [[$class: 'CleanBeforeCheckout', localBranch: "master"]],
                 userRemoteConfigs: [[
-                                            credentialsId: 'cbf178fa-56ee-4394-b782-36eb8932ac64',
-                                            url          : "https://github.com/Nicocovi/Microservice1"
+                                            credentialsId: '542afe18-c89d-4c10-a8ca-a43aeae75cf7',
+                                            url          : "https://github.com/ludwigachhammer/Microservice1"
                                     ]]
                 ])
     }
@@ -90,9 +90,11 @@ node {
         }
         
         stage("Build"){
-            sh "sudo gradle build"
+            //sh "sudo gradle build"
+            bat "gradle build"
         }
-        
+
+        /*
         stage("Get Basic Jira Information"){
             //GET http://jira-url:port/rest/api/2/project/{projectIdOrKey}
             def jiraProject = callGetJira("http://vmmatthes32.informatik.tu-muenchen.de:6000/rest/api/2/project/ED")
@@ -128,7 +130,8 @@ node {
             echo "DOMAIN: ${products}"
             BUSINESS_INFO = " \"domain\": \"${domains[0]}\", \"subdomain\": \"${subdomains[0]}\", \"product\": \"${products[0]}\" "       
         }
-        
+        */
+
         stage('Deploy') {
             def branch = ['master']
             def path = "build/libs/gs-spring-boot-0.1.0.jar"
@@ -139,16 +142,20 @@ node {
                }
                withCredentials([[
                                      $class          : 'UsernamePasswordMultiBinding',
-                                     credentialsId   : '3e479734-15f2-4816-ba21-d3926da4e288',
+                                     credentialsId   : '05487704-f456-43cb-96c3-72aaffdba62f',
                                      usernameVariable: 'CF_USERNAME',
                                      passwordVariable: 'CF_PASSWORD'
                              ]]) {
-                sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
-                sh 'cf target -o ncorpan-org -s development'
-                sh 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
+                bat "cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation"
+                bat 'cf target -o ead-tool -s development'
+                bat 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
+
+                //sh 'cf login -a https://api.run.pivotal.io -u $CF_USERNAME -p $CF_PASSWORD --skip-ssl-validation'
+                //sh 'cf target -o ncorpan-org -s development'
+                //sh 'cf push '+NAME+' -f '+manifest+' --hostname '+NAME+' -p '+path
             }
         }
-        
+
         
         stage("Get Runtime Information"){
             APP_STATUS = sh (
